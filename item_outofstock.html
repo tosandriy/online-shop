@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ruins</title>
+	<link rel="stylesheet" href="css/slick.css">
+	<link rel="stylesheet" href="css/slick-theme.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="body_items">
+	<header class="header_items">
+		<div class="header_content">
+			<div class="header_top">
+				<nav>
+					<a href="#">ФУТБОЛКИ</a>
+					<a href="#">ХУДИ</a>
+					<a href="#">ПОЛО</a>
+					<a href="#">РУБАШКИ</a>
+					<a href="#">ТРУСЫ</a>
+				</nav>
+				<div class="header_user">
+					<a href="#" class="cart"><img src="images/cart_black.png"></a>
+					<a href="#" class="user"><img src="images/user_black.png"></a>
+				</div>
+			</div>
+	</header>
+	<main id="main" class="main_item">
+		<div class="main_content">
+			<div class="item_descr">
+				<div class="item_title">
+					Какая то очень модная одежда Антон бы не стал носить
+				</div>
+				<div class="item_descr_main">
+					<div class="item_pics">
+						<div class="item_pic">
+							<img src="images/ruins1.png">
+						</div>
+						<div class="item_pic">
+							<img src="images/ruins2.png">
+						</div>
+						<div class="item_pic">
+							<img src="images/ruins3.png">
+						</div>
+					</div>
+					<div class="item_info">
+						<div class="item_price item_info_text">
+							<span>1000₽</span>	
+							<span class="out_of_stock">Нет в наличии</span>
+						</div>
+						<div class="item_brand item_info_text"> 
+							<span>Бренд: </span><span>Ruins</span>
+						</div>
+						<div class="item_season item_info_text"> 
+							<span>Сезон: </span><span>Любой</span>
+						</div>
+						<div class="item_collection item_info_text"> 
+							<span>Коллекция: </span><span>Ruins-first</span>
+						</div>
+						<div class="item_color item_info_text">
+							<span>Цвет: </span><span>Белый</span>
+						</div>
+						<div class="item_materials item_info_text">
+							<span>Состав: </span><span>Говно и палки</span>
+						</div>
+						<form class="info_form">
+							<div class="item_size item_info_list">
+								<span>Размер:</span>
+								<div class="radio_select disabled" name="size_select" id="size_select">
+									<span class="cur_selected_size">XS</span>
+								</div>
+								<div class="select_list">
+									<div class="select_list_wrapper">
+										<label class="size_label">
+											<input type="radio" name="size" id="size1" value="XS" checked="">
+											<span>XS</span>
+										</label>
+										<label class="size_label">
+											<input type="radio" name="size" id="size2" value="S">
+											<span>S</span>
+										</label>
+										<label class="size_label">
+											<input type="radio" name="size" id="size3"value="M">
+											<span>M</span>
+										</label>
+										<label class="size_label">
+											<input type="radio" name="size" id="size4"value="L">
+											<span>L</span>
+										</label>
+										<label class="size_label">
+											<input type="radio" name="size" id="size"value="XL">
+											<span>XL</span>
+										</label>
+										<label class="size_label">
+											<input type="radio" name="size" id="size"value="XXL">
+											<span>XXL</span>
+										</label>
+										
+									</div>
+								</div>
+							</div>
+							<div class="count_select_block">
+								<span>Количество:</span>
+								<div class="count_select">
+									<button type="button" class="count_minus count_char" onclick="countChange(this)"><img src="images/minus.png"></button><input type="number" class="cur_selected_count" name="count" id="count" value="1" min="0" max="30" disabled><button type="button" class="count_plus count_char" onclick="countChange(this)"><img src="images/plus.png"></button>
+								</div>
+							</div>
+							<div class="add_in_cart">
+								<input type="submit" name="add_in_cart_btn" class="add_in_cart_btn" value="В корзину" disabled>
+							</div>
+						</form>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer class="footer_items">
+		
+	</footer>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/slick.js"></script>
+	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>

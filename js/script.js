@@ -1,4 +1,4 @@
-$(".item_pics").slick({ //Top Slider
+$(".item_pics").slick({
 	arrows: true,
 	dots: false,
 	infinite: true,
@@ -13,17 +13,19 @@ $(".select_list").mCustomScrollbar({
 		scrollInertia:300
 	});
 function countChange(el) {
-	if($(el).is($(".count_plus"))){
-			if(+$(".cur_selected_count").val()<30){
-				$(".cur_selected_count")[0].stepUp()
+	count = $(".cur_selected_count:not([disabled])");
+	console.log(count)
+		if($(el).is($(".count_plus"))){
+			if(+count.val()<30){
+				count[0].stepUp()
 			}
 		}
 		else{
-			if(+$(".cur_selected_count").val()>1){
-				$(".cur_selected_count")[0].stepDown()
+			if(+count.val()>1){
+				count[0].stepDown()
 			}
 		}
-}
+	}
 function count() {
 	console.log("el")
 	
@@ -35,7 +37,7 @@ $(document).ready(function(){
 		$(this).parent().children(".filter_container").slideToggle(300);
 		$(this).children(".arrow_filter").toggleClass("rotate_arrow");
     });
-    $(".radio_select").click(function(e){
+    $(".radio_select:not(.disabled)").click(function(e){
     	console.log($(e.target).html())
 		$(".radio_select").each(function() {
 	        if (!$(this).is(e.target)){
