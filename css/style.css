@@ -1,13 +1,7 @@
-font-face {
+@font-face {
     font-family: 'DINPro';
-    src: url('../fonts/dinpro-light.otf');
-    font-weight: 300;    
-    font-style: normal;
- }
-font-face {
-    font-family: 'DINPro';
-    src: url('../fonts/dinpro-regular.otf');
-    font-weight: 400;    
+    src: url('../fonts/dinpro-bold.otf');
+    font-weight: 600;    
     font-style: normal;
  }
 @font-face {
@@ -18,10 +12,17 @@ font-face {
  }
 @font-face {
     font-family: 'DINPro';
-    src: url('../fonts/dinpro-bold.otf');
-    font-weight: 600;    
+    src: url('../fonts/dinpro-regular.otf');
+    font-weight: 400;    
     font-style: normal;
  }
+ @font-face {
+    font-family: 'DINPro';
+    src: url('../fonts/dinpro-light.otf');
+    font-weight: 300;    
+    font-style: normal;
+ }
+
  
  @font-face {
     font-family: 'Segoe UI';
@@ -51,6 +52,7 @@ a {
 	color: #000;
 	text-decoration: none;
 }
+
 body {
 	color: #000;
 	background: #fff;
@@ -244,6 +246,17 @@ main{
     display: grid;
     grid-template-columns: 300px 1fr;
 }
+.sort{
+    height: 53px;
+    width: 100%;
+    border-left: 1px solid #fff;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
 .item_list_container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -338,6 +351,8 @@ main{
     display: flex;
     flex-direction: column;
     transition: box-shadow 0.2s;
+    font-weight: 500;
+    font-size: 18px;
 }
 .product:hover{
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.25), 0px 0px 10px rgba(0, 0, 0, 0.05);
@@ -665,6 +680,51 @@ footer{
     font-size: 18px;
     margin-left: 10px;
     color: rgba(0,0,0,0.7);
+}
+.select_container{
+    display: inline-block;
+    margin-left: 10px;
+}
+.sort_type{
+    position: relative;
+}
+.select_list_sort{
+    position: absolute;
+    margin-top: 20px;
+    display: none;
+    width: 200px;
+    right: 0;
+    background-color: #fff;
+    border:1px solid #c4c4c4;
+    border-radius: 5px;
+}
+.sort_list-open{
+    display: block;
+}
+.sort_select{
+    border:1px solid #c4c4c4 ;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.sort_select>img{
+    height: 7px;
+    width: 10px;
+    margin-left: 10px;
+    user-select: none;
+    pointer-events: none;
+    vertical-align: middle;
+}
+.select_list_item_sort{
+    text-align: left;
+    padding: 10px;
+}
+.select_list_item_sort:hover{
+    background-color: #ededed;
+}
+.select_list_item_sort>label{
+    margin-left: 5px;
 }
 @keyframes animatetr { from {transform: translate3d(0px, 100px, 0px);} to{ transform: translate3d(0px, 0px, 0px);} }
 @keyframes animateop { from {opacity: 0;} to{opacity: 1;} }

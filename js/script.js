@@ -26,10 +26,6 @@ function countChange(el) {
 			}
 		}
 	}
-function count() {
-	console.log("el")
-	
-}
 $(document).ready(function(){
 
 	$(".filter_title").click(function(){
@@ -37,8 +33,15 @@ $(document).ready(function(){
 		$(this).parent().children(".filter_container").slideToggle(300);
 		$(this).children(".arrow_filter").toggleClass("rotate_arrow");
     });
+    $('.header_click_button').click(function(e){
+  		e.preventDefault();
+  		var target = $($(this).attr('href'));
+  		if(target.length){
+    		var scrollTo = target.offset().top;
+    		$('body, html').animate({scrollTop: scrollTo+'px'}, 800);
+    	}
+	});
     $(".radio_select:not(.disabled)").click(function(e){
-    	console.log($(e.target).html())
 		$(".radio_select").each(function() {
 	        if (!$(this).is(e.target)){
 				$(this).removeClass("radio_select_open")
@@ -47,18 +50,25 @@ $(document).ready(function(){
 		$(this).toggleClass("radio_select_open")
 		$(this).parent().children(".select_list").toggleClass("list-open")
 	});
+	$(".sort_select:not(.disabled)").click(function(e){
+		$(this).parent().children(".select_list_sort").toggleClass("sort_list-open")
+	});
 	$(document).mouseup(function (e){ 
-	var div = $(".radio_select"); 
-	var div2 = $(".select_list_item");
-	if (!div.is(e.target) && div.has(e.target).length === 0 && !div2.is(e.target) && div2.has(e.target).length === 0) {
-		$(".radio_select").removeClass("radio_select_open")
-		$(".select_list").removeClass("list-open")
-	}
+		var div = $(".sort_select"); 
+		var div2= $(".select_list_item_sort");
+		if (!div.is(e.target) && div.has(e.target).length === 0 && !div2.is(e.target) && div2.has(e.target).length === 0) {
+			$(".select_list_sort").removeClass("sort_list-open");
+		}
 	});
 	$(".size_label").click(function(){
 		$(".cur_selected_size").html($('input[name=size]:checked').val());
 		$(".radio_select").removeClass("radio_select_open")
 		$(".select_list").removeClass("list-open")
-	})
+	});
+	$(".select_list_item_sort").click(function(){
+		$(".select_list_sort").removeClass("sort_list-open");
+		$(".cur_select_sort").html($(this).children("label").html())
+	});
+
 })
 
