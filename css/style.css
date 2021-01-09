@@ -66,7 +66,9 @@ body {
     grid-template-rows: 100vh 1fr 150px;
     font-size: 18px;
 }
-
+button{
+    font-family: "DINPro","Segoe UI","Mina", sans-serif;
+}
 header.header_index{
     color: #fff;
     background: #141414;
@@ -177,6 +179,10 @@ nav>a:hover:after{
     padding: 15px;
     width: 150px;
     text-align: center;
+
+}
+.header_click_button>span{
+    font-weight: 500;
 }
 .header_click_button:before{
     content: "";
@@ -267,29 +273,46 @@ main{
 }
 .filter_block{
     background-color: #EDEDED;
-    margin-bottom:1px;
+    border-bottom:1px solid #fff;
     width: 100%; 
     font-size: 16px;
-    padding: 15px;
-    
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
 }
 .filter_title{
     width: 100%;
     display: flex;
     align-items: center;
-    cursor: pointer;
+    padding: 15px;
 }
-.filters_title{
+.filters_text{
     background-color: #EDEDED;
     margin-bottom:1px;
     width: 100%;
     font-size: 18px;
     padding: 15px;
-    font-weight: bold;
+    font-weight: 600;
+}
+
+.apply_filters_btn{
+    padding: 7px;
+    margin-left: auto;
+    font-size: 16px;
+    cursor: pointer;
+    border:1px solid #c4c4c4;
+    outline: none;
+    background-color: #efefef;
+    transition: .2s;
+    border-radius: 5px;
+    font-weight: 500;
+    width: 100%;
+}
+.apply_filters_btn:hover{
+    background-color: #c4c4c4;
 }
 .filter_container{
-    width: 100%;
-    margin-top: 15px;
+    margin: 0 15px 15px 15px;
     padding:10px 0;
     border-top:1px solid #979797;
     border-bottom:1px solid #979797;
@@ -363,11 +386,18 @@ main{
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
+    position: relative;
 }
-.product_image>img{
+.product_image>img:not(.item_brand){
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+.item_brand{
+    width: 25%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 .product_price_block{
     flex:1;
@@ -697,6 +727,7 @@ footer{
     background-color: #fff;
     border:1px solid #c4c4c4;
     border-radius: 5px;
+    z-index: 99;
 }
 .sort_list-open{
     display: block;
@@ -716,12 +747,24 @@ footer{
     pointer-events: none;
     vertical-align: middle;
 }
+.select_list_wrapper_sort{
+    overflow: hidden;
+}
 .select_list_item_sort{
     text-align: left;
     padding: 10px;
 }
+.select_list_item_sort:first-child{
+    border-radius: 5px 5px 0 0;
+}
+.select_list_item_sort:last-child{
+    border-radius: 0 0 5px 5px;
+}
 .select_list_item_sort:hover{
     background-color: #ededed;
+}
+.select_list_wrapper_sort *{
+    cursor: pointer;
 }
 .select_list_item_sort>label{
     margin-left: 5px;
