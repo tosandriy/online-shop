@@ -69,6 +69,23 @@ $(document).ready(function(){
 		$(".select_list_sort").removeClass("sort_list-open");
 		$(".cur_select_sort").html($(this).children("label").html())
 	});
+	$(".change_btn_personal").click(function(){
+		$(".settings_input_personal").removeAttr("disabled")
+		$(".settings_save_persanal").show()
+	});
+	$(".settings_save_persanal").click(function(){
+		$(".settings_input_personal").prop( "disabled", true );
+		$(".settings_save_persanal").hide()
+	});
+	$(".change_btn_address").click(function(){
+		$(".settings_input_address").removeAttr("disabled")
+		$(".settings_save_address").show()
+	});
+	$(".settings_save_address").click(function(){
+		$(".settings_input_address").prop( "disabled", true );
+		$(".settings_save_address").hide()
+	});
+
 
 })
 
