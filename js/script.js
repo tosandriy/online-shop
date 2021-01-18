@@ -41,32 +41,38 @@ $(document).ready(function(){
     		$('body, html').animate({scrollTop: scrollTo+'px'}, 800);
     	}
 	});
-    $(".radio_select:not(.disabled)").click(function(e){
-		$(".radio_select").each(function() {
-	        if (!$(this).is(e.target)){
-				$(this).removeClass("radio_select_open")
-				$(this).parent().children(".select_list").removeClass("list-open")
-		}});
+    $(".radio_select:not(.disabled)").click(function(event){
+		//$(".radio_select").each(function() {
+	        //if (!$(this).is(e.target)){
+				//$(this).removeClass("radio_select_open")
+				//$(this).parent().children(".select_list").removeClass("list-open")
+		//}});
+		event.stopPropagation();//
 		$(this).toggleClass("radio_select_open")
 		$(this).parent().children(".select_list").toggleClass("list-open")
 	});
 	$(".sort_select:not(.disabled)").click(function(e){
+		e.stopPropagation();//
 		$(this).parent().children(".select_list_sort").toggleClass("sort_list-open")
 	});
-	$(document).mouseup(function (e){ 
-		var div = $(".sort_select"); 
-		var div2= $(".select_list_item_sort");
-		if (!div.is(e.target) && div.has(e.target).length === 0 && !div2.is(e.target) && div2.has(e.target).length === 0) {
-			$(".select_list_sort").removeClass("sort_list-open");
-		}
+	//$(document).mouseup(function (e){ 
+	$(document).click(function (e){ //
+		$(".select_list_sort").removeClass("sort_list-open");//
+		$(".radio_select:not(.disabled)").removeClass("radio_select_open")//
+		$(".select_list").removeClass("list-open")//
+		//var div = $(".sort_select"); 
+		//var div2= $(".select_list_item_sort");
+		//if (!div.is(e.target) && div.has(e.target).length === 0 && !div2.is(e.target) && div2.has(e.target).length === 0) {
+			//$(".select_list_sort").removeClass("sort_list-open");
+		//}
 	});
 	$(".size_label").click(function(){
 		$(".cur_selected_size").html($('input[name=size]:checked').val());
-		$(".radio_select").removeClass("radio_select_open")
-		$(".select_list").removeClass("list-open")
+		//$(".radio_select").removeClass("radio_select_open")
+		//$(".select_list").removeClass("list-open")
 	});
 	$(".select_list_item_sort").click(function(){
-		$(".select_list_sort").removeClass("sort_list-open");
+		//$(".select_list_sort").removeClass("sort_list-open");
 		$(".cur_select_sort").html($(this).children("label").html())
 	});
 	$(".change_btn_personal").click(function(){
@@ -85,7 +91,31 @@ $(document).ready(function(){
 		$(".settings_input_address").prop( "disabled", true );
 		$(".settings_save_address").hide()
 	});
-
+	$(".user").click(function( event ){
+		event.preventDefault();
+		$(".overlay").show();
+	});
+	$(".overlay_form").click(function(event){
+		event.stopPropagation();
+	});
+	$(".overlay_container").click(function(){
+		$(".overlay").hide();
+		$(".overlay_form").hide();
+		$(".login_form").css("display","flex")
+	});
+	$(".close_overlay").click(function(){
+		$(".overlay").hide();
+		$(".overlay_form").hide();
+		$(".login_form").css("display","flex")
+	});
+	$(".signin_link").click(function(){
+		$(".overlay_form").hide();
+		$(".signin_form").css("display","flex")
+	});
+	$(".remember_link").click(function(){
+		$(".overlay_form").hide();
+		$(".remember_password_form").css("display","flex")
+	});
 
 })
 

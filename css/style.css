@@ -58,8 +58,12 @@ body {
 	background: #fff;
 	width: 100%;
 	font-family: "DINPro","Segoe UI","Mina", sans-serif;
-	font-weight: 400;
+    font-weight: 400;
+    font-size: 18px;
 	
+}
+input{
+    font-family: "DINPro","Segoe UI","Mina", sans-serif;
 }
 .body_index{
     display: grid;
@@ -149,6 +153,7 @@ nav>a:hover:after{
 }
 .header_user>a{
     font-size: 32px;
+    cursor: pointer;
 }
 .header_user>.cart>img{
     width: 40px;
@@ -406,7 +411,7 @@ main{
     align-items: flex-end;
 }
 .product_price{
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 700;
 }
 .item_descr{
@@ -933,6 +938,95 @@ footer{
 .order_info_final_price{
     font-size: 36px;
     font-weight: 700;
+}
+.overlay{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
+    
+    display: none;
+}
+.overlay_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+.overlay_form{
+    padding: 40px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    position: relative;
+    
+}
+.close_overlay{
+    background-image: url(../images/x.svg);
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
+}
+.signin_form,.remember_password_form{
+    display: none;
+}
+.overlay_form>h2{
+    text-align: center;
+}
+.overlay_input{
+    font-size: 18px;
+    border: none;
+    padding: 5px;
+    border-bottom: 1px solid #787878;
+    outline: none;
+    color: #000;
+    width: 350px;
+    font-family: "DINPro","Segoe UI","Mina", sans-serif;
+}
+.rememberme>span,.rememberme_checkbox{
+    cursor: pointer;
+}
+.rememberme_checkbox{
+    height: 16px;
+    width: 16px;
+    margin-right: 10px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+}
+.overlay_submit{
+    width: 100%;
+    height: 50px;
+    border:none;
+    outline: none;
+    background-color: #000;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .2s;
+    color: #fff;
+    transition: .2s;
+    
+}
+.overlay_submit:hover{
+    background-color: #4D4D4D;
+}
+.login_link{
+    display: flex;
+    justify-content: space-between;
+}
+.login_link>a{
+    cursor: pointer;
 }
 @keyframes animatetr { from {transform: translate3d(0px, 100px, 0px);} to{ transform: translate3d(0px, 0px, 0px);} }
 @keyframes animateop { from {opacity: 0;} to{opacity: 1;} }
