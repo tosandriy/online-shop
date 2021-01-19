@@ -54,12 +54,14 @@ $(document).ready(function(){
 	$(".sort_select:not(.disabled)").click(function(e){
 		e.stopPropagation();//
 		$(this).parent().children(".select_list_sort").toggleClass("sort_list-open")
+		$(this).children("img").toggleClass("rotate_arrow");
 	});
 	//$(document).mouseup(function (e){ 
 	$(document).click(function (e){ //
 		$(".select_list_sort").removeClass("sort_list-open");//
 		$(".radio_select:not(.disabled)").removeClass("radio_select_open")//
 		$(".select_list").removeClass("list-open")//
+		$(".sort_select:not(.disabled)").children("img").removeClass("rotate_arrow");
 		//var div = $(".sort_select"); 
 		//var div2= $(".select_list_item_sort");
 		//if (!div.is(e.target) && div.has(e.target).length === 0 && !div2.is(e.target) && div2.has(e.target).length === 0) {

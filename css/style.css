@@ -521,6 +521,7 @@ main{
     top:0;
     height: 100%;
     width: 45px;
+    transition: .3s;
     
 }
 .radio_select_open::after{
@@ -752,6 +753,7 @@ footer{
     user-select: none;
     pointer-events: none;
     vertical-align: middle;
+    transition: 0.3s;
 }
 .select_list_wrapper_sort{
     overflow: hidden;

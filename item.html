@@ -118,6 +118,36 @@
 	<footer class="footer_items">
 		
 	</footer>
+	<div class="overlay">
+		<div class="overlay_container">
+			<form class="login_form overlay_form">
+				<h2>Войти в аккаунт</h2>
+				<input type="email" name="email" placeholder="Email" class="overlay_input" required>
+				<input type="password" name="password" placeholder="Пароль" class="overlay_input" required>
+				<label class="rememberme"><input type="checkbox" class="rememberme_checkbox"><span>Запомнить</span></label>
+				<input type="submit" value="Войти" class="overlay_submit">
+				<div class="login_link">
+					<a class="signin_link">Регистрация</a>
+					<a class="remember_link">Забыли пароль?</a>
+				</div>
+				<div class="close_overlay"></div>
+			</form>
+			<form class="signin_form overlay_form">
+				<h2>Регистрация</h2>
+				<input type="email" name="email" placeholder="Email" class="overlay_input" required>
+				<input type="password" name="password" placeholder="Пароль" class="overlay_input" required>
+				<input type="password" name="confirm_password" placeholder="Подтвердите пароль" class="overlay_input" required>
+				<input type="submit" value="Зарегистрироваться" class="overlay_submit">
+				<div class="close_overlay"></div>
+			</form>
+			<form class="remember_password_form overlay_form">
+				<h2>Восстановить пароль</h2>
+				<input type="email" name="email" placeholder="Email" class="overlay_input" required>
+				<input type="submit" value="Восстановить" class="overlay_submit">
+				<div class="close_overlay"></div>
+			</form>
+		</div>
+	</div>
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/slick.js"></script>
 	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
