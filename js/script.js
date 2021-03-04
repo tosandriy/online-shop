@@ -13,8 +13,9 @@ $(".select_list").mCustomScrollbar({
 		scrollInertia:300
 	});
 function countChange(el) {
-	count = $(".cur_selected_count:not([disabled])");
+	count = $(el).parent().children(".cur_selected_count");
 	console.log(count)
+	if(count.is(":not([disabled])")){
 		if($(el).is($(".count_plus"))){
 			if(+count.val()<30){
 				count[0].stepUp()
@@ -26,8 +27,13 @@ function countChange(el) {
 			}
 		}
 	}
+}
 $(document).ready(function(){
-
+	/*$(".cur_selected_count").change(function(){
+		if ( $(this).val() == "" || $(this).val() == 0) {
+			$(this).val(1);
+		}
+	});*/
 	$(".filter_title").click(function(){
 		$(this).parent().children(".filter_container").toggleClass("filter_opacity");
 		$(this).parent().children(".filter_container").slideToggle(300);

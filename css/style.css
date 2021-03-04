@@ -73,6 +73,21 @@ input{
 button{
     font-family: "DINPro","Segoe UI","Mina", sans-serif;
 }
+.btn{
+    width: 100%;
+    height: 50px;
+    border:none;
+    outline: none;
+    background-color: #EDEDED;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .2s;
+
+}
+.btn:not([disabled]):hover{
+    background-color: #C4C4C4;
+}
 header.header_index{
     color: #fff;
     background: #141414;
@@ -256,6 +271,7 @@ main{
 .item_list{
     display: grid;
     grid-template-columns: 300px 1fr;
+    min-height: calc(100vh - 190px);
 }
 .sort{
     height: 53px;
@@ -415,7 +431,7 @@ main{
     font-weight: 700;
 }
 .item_descr{
-    height: calc(100vh - 190px);
+    min-height: calc(100vh - 190px);
     display: flex;
     flex-direction: column;
 }
@@ -685,17 +701,9 @@ main{
     width: 200px;
     height: 80px;
     font-size: 24px;
-    font-weight: bold;
-    border:none;
-    outline: none;
-    background-color: #efefef;
-    transition:  background-color .2s;
-    cursor: pointer;
     border-radius: 5px;
 }
-.add_in_cart_btn:not([disabled]):hover{
-    background-color: #C4C4C4;
-}
+
 
 footer{
     background-color: #000;
@@ -785,19 +793,8 @@ footer{
     grid-template-columns: 150px 1fr;
     gap:80px;
 }
-.accaunt_menu_btn{
-    width: 100%;
-    height: 50px;
-    border:none;
-    outline: none;
-    background-color: #EDEDED;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: .2s;
 
-}
-.accaunt_menu_btn:not(.accaunt_menu_btn_active):hover{
+.btn:not(.accaunt_menu_btn_active):hover{
     background-color: #C4C4C4;
 }
 .accaunt_menu_btn_logout{
@@ -1029,6 +1026,132 @@ footer{
 }
 .login_link>a{
     cursor: pointer;
+}
+.cart_content{
+    width: 100%;
+    max-width: 1200px;
+    min-height: calc(100vh - 190px);
+    display: flex;
+    flex-direction: column;
+}
+.cart_title_name{
+    display: inline;
+    margin-right: 20px;
+}
+.cart_main{
+    flex:1;
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    /*gap: 40px;*/
+}
+.cart_main>div{
+    min-height: 100%;
+    
+}
+.cart_items{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.final_price{
+    position: relative;
+}
+.final_price_border{
+    height: 100%;
+    width: 1px;
+    background-color: #EDEDED;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.cart_title{
+    margin-bottom: 40px;
+}
+.cart_item{
+    display: flex;
+    height: 220px;
+    padding: 20px;
+    width: 100%;
+}
+.cart_item:not(:last-child){
+    border-bottom: 1px solid #EDEDED;
+}
+.cart_item_image{
+    height: 100%;
+    width: 150px;
+    object-fit: contain;
+    margin-right: 20px;
+}
+.cart_item_descr{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+}
+.cart_item_descr_header{
+    display: flex;
+}
+.cart_item_descr_header_title{
+    font-weight: 500;
+    font-size: 30px;
+    
+}
+.cart_item_descr_header_price{
+    font-weight: 600;
+    font-size: 30px;
+    text-align: end;
+}
+.remove_from_cart{
+    width: 25px;
+    height: 25px;
+    margin-left: auto;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.remove_from_cart>img{
+    width: 100%;
+}
+.cart_item_descr_footer{
+    flex:1;
+    display: flex;
+    align-items: flex-end;
+}
+.cart_item_descr_info{
+    margin: 20px 0;
+}
+.cart_item_descr_header_price{
+    margin-left: auto;
+}
+.final_price{
+    position: relative;
+    justify-content: flex-start;
+}
+.final_price_content{
+    height: 350px;
+    width: 350px;
+    position: fixed;
+    top: calc(50% - 175px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+}
+.final_price_content>div{
+    width: 100%;
+}
+.final_price_content>div:not(:last-child){
+    margin-bottom: 20px;
+}
+.delivery_terms>a{
+    text-decoration: underline;
+}
+.total_price{
+    font-size: 30px;
+    font-weight: 600;
+}
+.checkout{
+    border-radius: 5px;
 }
 @keyframes animatetr { from {transform: translate3d(0px, 100px, 0px);} to{ transform: translate3d(0px, 0px, 0px);} }
 @keyframes animateop { from {opacity: 0;} to{opacity: 1;} }
