@@ -332,18 +332,43 @@ main{
 .apply_filters_btn:hover{
     background-color: #c4c4c4;
 }
+.prise_gap{
+}
+.prise_gap>input{
+    width: calc(50% - 5px);
+    height: 40px;
+    outline: none;
+    border:1px #979797 solid;
+    padding: 5px;
+    font-size: 16px;
+}
+.prise_gap>input:first-child{
+    margin-right: 10px;
+}
 .filter_container{
+    opacity: 0;
+    transition-duration: 0s;
+    overflow-y: hidden;
+    max-height: 0;
+
+}
+.filter_content{
     margin: 0 15px 15px 15px;
     padding:10px 0;
     border-top:1px solid #979797;
     border-bottom:1px solid #979797;
-    opacity: 0;
-    transition: opacity 0.3s ease-in;
-    
-}
-.filter_list{
     max-height: 250px;
+
+
+}
+
+.filter_list{
     overflow-y: auto;
+}
+.filter_enabled{
+    animation: 0.4s collapse_in;
+    animation-fill-mode: forwards;
+    transition: opacity 0.4s ease-in;
 }
 .filter_list label{
     padding: 5px;
@@ -376,20 +401,7 @@ main{
 .category_title{
     font-size: 24px;
 }
-.prise_gap{
 
-}
-.prise_gap>input{
-    width: calc(50% - 5px);
-    height: 40px;
-    outline: none;
-    border:1px #979797 solid;
-    padding: 5px;
-    font-size: 16px;
-}
-.prise_gap>input:first-child{
-    margin-right: 10px;
-}
 .product{
     padding: 10px;
     display: flex;
@@ -712,9 +724,7 @@ footer{
     width: 100%;
     height: 150px;
 }
-.disable{
-    display: none;
-}
+
 .rotate_arrow{
     transform: rotate(180deg);
 }
@@ -1153,6 +1163,8 @@ footer{
 .checkout{
     border-radius: 5px;
 }
+/*@keyframes collapse_in { 99% { max-height: 100vh;} 100% {max-height: 999999px; }}*/
+@keyframes collapse_in { 100% {max-height: 285px;}}
 @keyframes animatetr { from {transform: translate3d(0px, 100px, 0px);} to{ transform: translate3d(0px, 0px, 0px);} }
 @keyframes animateop { from {opacity: 0;} to{opacity: 1;} }
 @keyframes fade { from { opacity:0;} 25% { opacity:0;}  50%{ opacity:1;} 75%{ opacity:1;} to{ opacity:0;} }

@@ -36,7 +36,7 @@ $(document).ready(function(){
 	});*/
 	$(".filter_title").click(function(){
 		$(this).parent().children(".filter_container").toggleClass("filter_opacity");
-		$(this).parent().children(".filter_container").slideToggle(300);
+		$(this).parent().children(".filter_container").toggleClass("filter_enabled");
 		$(this).children(".arrow_filter").toggleClass("rotate_arrow");
     });
     $('.header_click_button').click(function(e){
