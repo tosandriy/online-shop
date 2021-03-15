@@ -55,7 +55,7 @@ a {
 
 body {
 	color: #000;
-	background: #fff;
+	background: #FFF;
 	width: 100%;
 	font-family: "DINPro","Segoe UI","Mina", sans-serif;
     font-weight: 400;
@@ -85,11 +85,11 @@ button{
     transition: .2s;
 
 }
-.btn:not([disabled]):hover{
+.btn:not([disabled]):not(.accaunt_menu_btn_active):hover{
     background-color: #C4C4C4;
 }
 header.header_index{
-    color: #fff;
+    color: #FFF;
     background: #141414;
     background-image: url("../images/header_back.jpg");
     background-size: cover;
@@ -99,7 +99,7 @@ header.header_items{
 
 }
 header.header_index a{
-    color: #fff;
+    color: #FFF;
     font-weight: 300;
 }
 header.header_index>div{
@@ -145,7 +145,7 @@ nav>a:after{
     display: block;
     width: 100%;
     height: 1px;
-    background-color: #fff;
+    background-color: #FFF;
     transition: transform 0.2s ease-out;
     transform: scaleX(0);
     transform-origin: right center;
@@ -195,7 +195,7 @@ nav>a:hover:after{
     display: block;
     margin-top: 70px;
     position: relative;
-    border:1px #fff solid;
+    border:1px #FFF solid;
     padding: 15px;
     width: 150px;
     text-align: center;
@@ -208,7 +208,7 @@ nav>a:hover:after{
     content: "";
     position: absolute;
     z-index: 0;
-    background-color:#fff;
+    background-color:#FFF;
     width: 100%;
     height: 100%;
     top:0;
@@ -276,7 +276,7 @@ main{
 .sort{
     height: 53px;
     width: 100%;
-    border-left: 1px solid #fff;
+    border-left: 1px solid #FFF;
     font-size: 18px;
     font-weight: 400;
     text-align: right;
@@ -290,11 +290,15 @@ main{
     grid-auto-rows: 520px;
 }
 .filters_content{
+    border-radius: 5px;
+    overflow: hidden;
     width: 100%;
+    background-color: #EDEDED;
+    border: 1px solid  #EDEDED;
 }
 .filter_block{
-    background-color: #EDEDED;
-    border-bottom:1px solid #fff;
+    background-color: #FFF;
+    border-bottom:1px solid #EDEDED;
     width: 100%; 
     font-size: 16px;
     display: flex;
@@ -308,20 +312,21 @@ main{
     padding: 15px;
 }
 .filters_text{
-    background-color: #EDEDED;
-    margin-bottom:1px;
+    background-color: #FFF;
     width: 100%;
     font-size: 18px;
     padding: 15px;
     font-weight: 600;
 }
-
+.filters_text:not(:last-child){
+    margin-bottom:1px;
+}
 .apply_filters_btn{
     padding: 7px;
     margin-left: auto;
     font-size: 16px;
     cursor: pointer;
-    border:1px solid #c4c4c4;
+    border:none;
     outline: none;
     background-color: #efefef;
     transition: .2s;
@@ -330,7 +335,7 @@ main{
     width: 100%;
 }
 .apply_filters_btn:hover{
-    background-color: #c4c4c4;
+    background-color: #C4C4C4;
 }
 .prise_gap{
 }
@@ -338,7 +343,7 @@ main{
     width: calc(50% - 5px);
     height: 40px;
     outline: none;
-    border:1px #979797 solid;
+    border:1px #EDEDED solid;
     padding: 5px;
     font-size: 16px;
 }
@@ -355,8 +360,8 @@ main{
 .filter_content{
     margin: 0 15px 15px 15px;
     padding:10px 0;
-    border-top:1px solid #979797;
-    border-bottom:1px solid #979797;
+    border-top:1px solid #EDEDED;
+    border-bottom:1px solid #EDEDED;
     max-height: 250px;
 
 
@@ -410,7 +415,7 @@ main{
     font-weight: 500;
     font-size: 18px;
 }
-.product:hover{
+.product:not(.product_loading):hover{
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.25), 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
 .product_image{
@@ -442,6 +447,29 @@ main{
     font-size: 28px;
     font-weight: 700;
 }
+.product_image_loading{
+    background-color:#EDEDED;
+}
+.product_discription_loading{
+    border-radius: 5px;
+    width: 100%;
+    height: 23px;
+    background-color:#EDEDED;
+}
+.product_discription_loading:first-child{
+    margin-bottom: 5px;
+}
+.product_discription_loading:last-child{
+    width: 80%;
+    margin-bottom: 5px;
+}
+.product_price_loading{
+    border-radius: 5px;
+    width: 40%;
+    height: 37px;
+    background-color:#EDEDED;
+}
+
 .item_descr{
     min-height: calc(100vh - 190px);
     display: flex;
@@ -715,8 +743,42 @@ main{
     font-size: 24px;
     border-radius: 5px;
 }
+.item_title_loading{
+    border-radius: 5px;
+    width: 80%;
+    height: 36px;
+    background-color: #EDEDED;
+}
+.item_pics_loading{
+    
+    height:calc(100vh - 40vh);
+    width: 50%;
+    padding: 0 50px;
+}
+.item_pic_loading{
+    width: 100%;
+    height: 100%;
+    background-color: #EDEDED;
+}
 
+.item_info_loading>div{
+    background-color: #EDEDED;
+    border-radius: 5px;
+}
 
+.item_info_text_loading{
+    height: 23px;
+}
+.item_price_loading{
+    height: 51px;
+}
+.item_info_choose_loading{
+    height: 76px;
+}
+.add_in_cart_loading{
+    width: 200px;
+    height: 80px;
+}
 footer{
     background-color: #000;
 }
@@ -749,8 +811,8 @@ footer{
     display: none;
     width: 200px;
     right: 0;
-    background-color: #fff;
-    border:1px solid #c4c4c4;
+    background-color: #FFF;
+    border:1px solid #C4C4C4;
     border-radius: 5px;
     z-index: 99;
 }
@@ -758,7 +820,7 @@ footer{
     display: block;
 }
 .sort_select{
-    border:1px solid #c4c4c4 ;
+    border:1px solid #EDEDED ;
     padding: 5px 10px;
     border-radius: 5px;
     font-weight: 500;
@@ -787,7 +849,7 @@ footer{
     border-radius: 0 0 5px 5px;
 }
 .select_list_item_sort:hover{
-    background-color: #ededed;
+    background-color: #EDEDED;
 }
 .select_list_wrapper_sort *{
     cursor: pointer;
@@ -804,15 +866,20 @@ footer{
     gap:80px;
 }
 
-.btn:not(.accaunt_menu_btn_active):hover{
-    background-color: #C4C4C4;
+.accaunt_menu_btn_page{
+    border-radius: 0px 0px 5px 5px;
 }
+.accaunt_menu_btn_page:first-child{
+    border-radius: 5px 5px 0px 0px;
+}
+
 .accaunt_menu_btn_logout{
     margin-top: 40px;
+    border-radius: 5px;
 }
 .accaunt_menu_btn_active{
     background-color: #000;
-    color: #fff;
+    color: #FFF;
 }
 .accaunt_settings{
     width: 100%;
@@ -882,6 +949,8 @@ footer{
     margin-top: 40px;
     border:1px solid #EDEDED;
     font-size: 18px;
+    border-radius: 5px;
+    overflow: hidden;
 }
 .order_title{
     height: 50px;
@@ -968,7 +1037,7 @@ footer{
 }
 .overlay_form{
     padding: 40px;
-    background-color: #fff;
+    background-color: #FFF;
     display: flex;
     flex-direction: column;
     row-gap: 40px;
@@ -1023,7 +1092,7 @@ footer{
     font-weight: 500;
     cursor: pointer;
     transition: .2s;
-    color: #fff;
+    color: #FFF;
     transition: .2s;
     
 }
