@@ -1,0 +1,138 @@
+{% extends "base2.html" %}
+{% block content %}
+{% load static %}
+	<main id="main" class="main_items">
+		<div class="main_content">
+			<div class="item_list">
+				<div class="filters">
+					<div class="filters_content">
+						<div class="filters_text">
+							<span>Фильтры</span>
+						</div>
+						<form method="GET">
+						<div class="filter_brand filter_block">
+
+							<div class="filter_title">Бренд<img src="{% static 'images/arrow_black.png' %}" class="arrow_filter">
+							</div>
+							<div class="filter_container filter_list brands_list disable">
+								{% for brand in brands %}
+								<label>
+									<input type="checkbox" name="brand" value="{{ brand }}">
+									<span>{{ brand }}</span>
+								</label>
+
+								{% endfor %}
+							</div>
+						</div>
+						<div class="filter_season filter_block">
+							<div class="filter_title">Сезон<img src="{% static 'images/arrow_black.png' %}" class="arrow_filter"></div>
+							<div class="filter_container filter_list season_list disable">
+								<label>
+									<input type="checkbox" name="season" value="1">
+									<span>Любой</span>
+								</label>
+								<label>
+									<input type="checkbox" name="season" value="2">
+									<span>Лето</span>
+								</label>
+								<label>
+									<input type="checkbox" name="season" value="3">
+									<span>Зима</span>
+								</label>
+								<label>
+									<input type="checkbox" name="season" value="4">
+									<span>Весна</span>
+								</label>
+								<label>
+									<input type="checkbox" name="season" value="5">
+									<span>Осень</span>
+								</label>
+							</div>
+						</div>
+						<div class="filter_size filter_block">
+							<div class="filter_title">Размер<img src="{% static 'images/arrow_black.png' %}" class="arrow_filter"></div>
+							<div class="filter_container filter_list size_list disable">
+								<label>
+									<input type="checkbox" name="size" value="XS">
+									<span>XS</span>
+								</label>
+								<label>
+									<input type="checkbox" name="size" value="S">
+									<span>S</span>
+								</label>
+								<label>
+									<input type="checkbox" name="size" value="M">
+									<span>M</span>
+								</label>
+								<label>
+									<input type="checkbox" name="size" value="L">
+									<span>L</span>
+								</label>
+								<label>
+									<input type="checkbox" name="size" value="XL">
+									<span>XL</span>
+								</label>
+								<label>
+									<input type="checkbox" name="size" value="XXL">
+									<span>XXL</span>
+								</label>
+							</div>
+						</div>
+						<div class="filter_price filter_block">
+							<div class="filter_title">Цена<img src="{% static 'images/arrow_black.png' %}" class="arrow_filter"></div>
+							<div class="filter_container prise_gap disable">
+								<input type="text" name="from" placeholder="От"><input type="text" name="to" placeholder="До">
+							</div>
+						</div>
+							<div class="filter_apply filters_text">
+							<button type="submit" class="apply_filters_btn">Применить</button>
+						</div>
+						</form>
+					</div>
+				</div>
+				<div>
+					<div class="sort">
+						<span>Сортировать по:</span><span>
+							<div class="select_container sort_type">
+								<div class="sort_select" id="sort_select">
+									<span class="cur_select_sort">возрастнию цены</span><img src="{% static 'images/arrow_black.png' %}">
+								</div>
+								<div class="select_list_sort">
+									<div class="select_list_wrapper_sort">
+										<div class="select_list_item_sort">
+											<input type="radio" id="price_up" value="" name="sort_type" checked="checked">
+											<label for="price_up">возрастанию цены</label>
+										</div>
+										<div class="select_list_item_sort">
+											<input type="radio" id="price_down" value="" name="sort_type">
+											<label for="price_down">убыванию цены</label>
+										</div>
+										<div class="select_list_item_sort">
+											<input type="radio" id="name_sort" value="" name="sort_type">
+											<label for="name_sort">названию</label>
+										</div>
+									</div>
+								</div>
+						</div>
+						</span>
+					</div>
+				<div class="item_list_container">
+
+					{% for product in products %}
+					<a href="/product/{{product.id}}" class="product">
+						<div class="product_image">
+							<img src="{{ product.main_photo.url }}">
+						</div>
+						<div class="product_discription">
+							{{product.name}}
+						</div>
+						<div class="product_price_block">
+							<div class="product_price">{{product.price}}₽</div>
+						</div>
+					</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</main>
+	{% endblock content %}

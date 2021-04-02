@@ -1,0 +1,61 @@
+<div class="filters">
+                <div class="filters_content">
+                    <div class="filters_text">
+                        <span>Фильтры</span>
+                    </div>
+                    <form onSubmit={this.handleSubmit}>
+                    <div class="filter_brand filter_block">
+
+                        <div class="filter_title">Бренд<img src={arrow} class="arrow_filter"> </div>
+
+                        <div class="filter_container filter_list brands_list disable">
+                            {this.state.brands.map(brand => (
+                                <input type="checkbox" name="brand" value={brand}>
+                            )}
+                        </div>
+
+                    </div>
+                    <div class="filter_season filter_block">
+                        <div class="filter_title">Сезон<img src={arrow} class="arrow_filter"/></div>
+                        <div class="filter_container filter_list season_list disable">
+                        {[1,2,3,4,5].map( season =>
+                            <label>
+                                <input type="checkbox" name="season" value={season} onChange={this.onChange}/>
+                                <span>Любой</span>
+                            </label>
+                        )}
+                        </div>
+                    </div>
+                    <div class="filter_size filter_block">
+                        <div class="filter_title">Размер<img src={arrow} class="arrow_filter"/></div>
+                        <div class="filter_container filter_list size_list disable">
+                            {['XS','S','M','L','XL','XXL'].map( size =>
+                            <label>
+                                <input type="checkbox" name="size" value={size} onChange={this.onChange}/>
+                                <span>XS</span>
+                            </label>
+                            )}
+                        </div>
+                    </div>
+                    <div class="filter_price filter_block">
+                        <div class="filter_title">Цена<img src={arrow}   class="arrow_filter"/></div>
+                        <div class="filter_container prise_gap disable">
+                            <input type="text" name="from" placeholder="От" onChange={this.onChange}/>
+                            <input type="text" name="to" placeholder="До" onChange={this.onChange}/>
+                        </div>
+                    </div>
+                        <div class="filter_apply filters_text">
+                        <button type="submit" class="apply_filters_btn">Применить</button>
+                    </div>
+                    </div>
+                    </form>
+                </div>
+</div>
+{this.state.brands.map(brand => (<input type="checkbox" name="brand" value={brand}>)}
+
+{[1,2,3,4,5].map( season =>
+                                <label>
+                                    <input type="checkbox" name="season" value={season} onChange={this.onChange}/>
+                                    <span>Любой</span>
+                                </label>
+                            )}

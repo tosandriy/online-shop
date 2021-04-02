@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ruins</title>
+	<link rel="stylesheet" href="{% static 'css/slick.css' %}">
+	<link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="body_items">
+	<header class="header_items">
+		<div class="header_content">
+			<div class="header_top">
+				<nav>
+					<a href="/products/all">ВСЕ</a>
+					<a href="/products/t-shirts">ФУТБОЛКИ</a>
+					<a href="/products/hoodie">ХУДИ</a>
+					<a href="/products/polo">ПОЛО</a>
+					<a href="/products/shirts">РУБАШКИ</a>
+				</nav>
+				<div class="header_user">
+					<a href="#" class="cart"><img src="{% static 'images/cart_black.png' %}"></a>
+					<a href="/profile" class="user"><img src="{% static 'images/user_black.png' %}"></a>
+				</div>
+			</div>
+		</div>
+	</header>
+
+    {% block content %}
+
+    {% endblock content %}
+<footer class="footer_items">
+
+	</footer>
+
+	{% if not user.is_authenticated %}
+	<div class="overlay">
+		<div class="overlay_container">
+			<form method="POST" class="login_form overlay_form">
+				{% csrf_token %}
+				<h2>Войти в аккаунт</h2>
+				<input type="email" name="username" placeholder="Email" class="overlay_input" required>
+				<input type="password" name="password" placeholder="Пароль" class="overlay_input" required>
+				<label class="remember_me"><input name="remember_me" type="checkbox" class="rememberme_checkbox"><span>Запомнить</span></label>
+				<input type="submit" value="Войти" class="overlay_submit">
+				<div class="login_link">
+					<a class="signin_link">Регистрация</a>
+					<a class="remember_link">Забыли пароль?</a>
+				</div>
+				<div class="close_overlay"></div>
+			</form>
+
+		</div>
+	</div>
+	{% endif %}
+	<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+	<script src="{% static 'js/slick.js' %}"></script>
+	<script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+	<script src="{% static 'js/script.js' %}"></script>
+	{% if not user.is_authenticated %}
+	<script>
+	$(document).ready(function(){
+		$(".user").click(function( event ){
+		event.preventDefault();
+		$(".overlay").show();
+	});
+	})
+	</script>
+	{% endif %}
+</body>
+</html>

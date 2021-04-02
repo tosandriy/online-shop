@@ -1,0 +1,68 @@
+{% extends "base2.html" %}
+{% block content %}
+	{% load static %}
+	<main id="main" class="main_item">
+		<div class="main_content">
+			<div class="item_descr">
+				<div class="item_title">
+					{{ product.name }}
+				</div>
+				<div class="item_descr_main">
+					<div class="item_pics">
+						<div class="item_pic">
+							<img src="{{ product.main_photo.url }}">
+						</div>
+
+						{% for photo in product.photos.objects %}
+							<div class="item_pic">
+								<img src="{{ photo.url }}">
+							</div>
+						{% endfor %}
+
+					</div>
+					<div class="item_info">
+						<div class="item_price item_info_text">
+							<span>{{ product.price }}₽</span>
+						</div>
+						<div class="item_brand item_info_text"> 
+							<span>Бренд: </span><span>{{brand}}</span>
+						</div>
+						<div class="item_season item_info_text"> 
+							<span>Сезон: </span><span>{{product.get_season_display}}</span>
+						</div>
+						<form class="info_form">
+							<div class="item_size item_info_list">
+								<span>Размер:</span>
+
+								<div class="radio_select " id="size_select">
+									<span class="cur_selected_size">{% if sizes %}{{sizes.0}}{% else %} Нет в наличии {% endif %}</span>
+								</div>
+								<div class="select_list">
+									<div class="select_list_wrapper">
+										{% for size in sizes %}
+										<label class="size_label">
+											<input type="radio" name="size" id="size1" value="XS" checked="">
+											<span>{{size}}</span>
+										</label>
+										{% endfor %}
+										
+									</div>
+								</div>
+							</div>
+							<div class="count_select_block">
+								<span>Количество:</span>
+								<div class="count_select">
+									<button type="button" class="count_minus count_char" onclick="countChange(this)"><img src="{% static 'images/minus.png' %}"></button><input type="number" class="cur_selected_count" name="count" id="count" value="1" min="0" max="30"><button type="button" class="count_plus count_char" onclick="countChange(this)"><img src="{% static 'images/plus.png' %}"></button>
+								</div>
+							</div>
+							<div class="add_in_cart">
+								<button type="submit" name="add_in_cart_btn" class="add_in_cart_btn">Отправить</button>
+							</div>
+						</form>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	{% endblock content %}

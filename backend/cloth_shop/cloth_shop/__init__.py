@@ -1,0 +1,1 @@
+default_app_config = 'cloth_shop.apps.ClothShopConfig'

@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ruins</title>
+	<link rel="stylesheet" href="{% static 'css/slick.css' %}">
+	<link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="body_items">
+	<header class="header_items">
+		<div class="header_content">
+			<div class="header_top">
+				<nav>
+					<a href="/products/all">ВСЕ</a>
+					<a href="/products/t-shirts">ФУТБОЛКИ</a>
+					<a href="/products/hoodie">ХУДИ</a>
+					<a href="/products/polo">ПОЛО</a>
+					<a href="/products/shirts">РУБАШКИ</a>
+				</nav>
+				<div class="header_user">
+						<a href="#" class="cart"><img src="{% static 'images/cart_black.png' %}"></a>
+						<a href="/profile" class="user"><img src="{% static 'images/user_black.png' %}"></a>
+					</div>
+				</div>
+		</div>
+	</header>
+	<main id="main" class="main_item">
+		<div class="main_content profile_content">
+			<div class="accaunt_menu">
+				<a href="/profile"><button class="accaunt_menu_btn accaunt_menu_btn_page accaunt_menu_btn_profile accaunt_menu_btn_active">Профиль</button></a>
+				<a href="/purchase_history"><button class="accaunt_menu_btn accaunt_menu_btn_page accaunt_menu_btn_orders">Заказы</button></a>
+				<a href="/logout"><button class="accaunt_menu_btn accaunt_menu_btn_logout">Выйти</button></a>
+			</div>
+			<div class="accaunt_page">
+				<div class="accaunt_settings">
+					<form class="settings_form">
+						<h2 class="change_title change_title_personal">
+							<span>Персональные данные</span>
+							<span class="change_btn change_btn_personal">Изменить</span>
+						</h2>
+						<a href="#" class="change_password">Сменить пароль</a>
+						<div>
+							<span class="input_title">Имя</span><br>
+							<input type="text" name="name" class="settings_input settings_input_personal" disabled>
+						</div>
+						<div>
+							<span class="input_title">Фамилия</span><br>
+							<input type="text" name="surname" class="settings_input settings_input_personal" disabled>
+						</div>
+						<div>
+							<span class="input_title">Отчество</span><br>
+							<input type="text" name="patronymic_name" class="settings_input settings_input_personal" disabled>
+						</div>
+						<div>
+							<span class="input_title">Телефон</span><br>
+							<input type="text" name="phone" class="settings_input settings_input_personal" disabled>
+						</div>
+						<button type='button' class="accaunt_menu_btn settings_save settings_save_persanal">Сохранить</button>
+
+					</form>
+					<form class="settings_form">
+						<h2 class="change_title change_title_address">
+							<span>Адрес доставки</span>
+							<span class="change_btn change_btn_address">Изменить</span>
+						</h2>
+						<div>
+							<span class="input_title">Страна</span><br>
+							<input type="text" name="country" class="settings_input settings_input_address" disabled>
+						</div>
+						<div>
+							<span class="input_title">Город</span><br>
+							<input type="text" name="locality" class="settings_input settings_input_address" disabled>
+						</div>
+						<div>
+							<span class="input_title">Край/область/регион</span><br>
+							<input type="text" name="region" class="settings_input settings_input_address" disabled>
+						</div>
+						<div>
+							<span class="input_title">Улица, Дом, Квартира</span><br>
+							<input type="text" name="address" class="settings_input settings_input_address" disabled>
+						</div>
+						<div>
+							<span class="input_title">Индекс</span><br>
+							<input type="text" name="zip" class="settings_input settings_input_address" disabled>
+						</div>
+						<button type='button' class="accaunt_menu_btn settings_save settings_save_address ">Сохранить</button>
+					</form>
+				</div>
+
+				
+			</div>
+		</div>
+	</main>
+	<footer class="footer_items">
+		
+	</footer>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/slick.js"></script>
+	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>

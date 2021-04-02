@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ruins</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="body_index">
+	<header class="header_index">
+		<div class="header_container">
+			<div class="header_content">
+				<div class="header_top header_top_index">
+
+					<nav>
+						<a href="/products/all">ВСЕ</a>
+					<a href="/products/t-shirts">ФУТБОЛКИ</a>
+					<a href="/products/hoodie">ХУДИ</a>
+					<a href="/products/polo">ПОЛО</a>
+					<a href="/products/shirts">РУБАШКИ</a>
+					</nav>
+					<div class="header_user">
+						<a href="#" class="cart"><img src="{% static 'images/cart.png' %}"></a>
+						<a href="/profile" class="user"><img src="{% static 'images/user.png' %}"></a>
+					</div>
+				</div>
+				<div class="header_click">
+					<div class="header_click_container">
+						<div class="header_click_logo animate">
+							<img src="{% static 'images/logo.png' %}">
+						</div>
+						<div class="header_click_text animate">
+							CАМАЯ МОДНАЯ ОДЕЖДА ЭТОЙ ПЛАНЕТЫ 
+						</div>
+						<a href="#main" class="header_click_button animate">
+							<span>Просмотреть</span>
+						</a>
+					</div>
+				</div>
+				<div class="scrollme_block">
+					<div class="scrollme">
+						<img src="{% static 'images/scroll_me.png' %}">
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<main id="main">
+		<div class="main_content">
+			<div class="category1" >
+				<div class="category_title_block">
+					<h2 class="category_title">Новинки:</h2>
+				</div>
+				<div class="category_main">
+					{% for product in newest_products %}
+					<a href="/product/{{product.id}}" class="product">
+						<div class="product_image">
+							<img src="{{ product.main_photo.url }}">
+						</div>
+						<div class="product_discription">
+							{{ product.name }}
+						</div>
+						<div class="product_price_block">
+							<div class="product_price">{{product.price}}₽</div>
+						</div>
+					</a>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="category1" >
+				<div class="category_title_block">
+					<h2 class="category_title">Популярное:</h2>
+				</div>
+				<div class="category_main">
+					{% for product in popular_products %}
+					<a href="/product/{{product.id}}" class="product">
+						<div class="product_image">
+							<img src="{{ product.main_photo.url }}">
+						</div>
+						<div class="product_discription">
+							{{ product.name }}
+						</div>
+						<div class="product_price_block">
+							<div class="product_price">{{product.price}}₽</div>
+						</div>
+					</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer>
+		
+	</footer>
+	{% if not user.is_authenticated %}
+	<div class="overlay">
+		<div class="overlay_container">
+			<form method="POST" class="login_form overlay_form">
+				{% csrf_token %}
+				<h2>Войти в аккаунт</h2>
+				<input type="email" name="username" placeholder="Email" class="overlay_input" required>
+				<input type="password" name="password" placeholder="Пароль" class="overlay_input" required>
+				<label class="remember_me"><input name="remember_me" type="checkbox" class="rememberme_checkbox"><span>Запомнить</span></label>
+				<input type="submit" value="Войти" class="overlay_submit">
+				<div class="login_link">
+					<a href="/register" class="signin_link">Регистрация</a>
+<!--					<a class="remember_link">Забыли пароль?</a>-->
+				</div>
+				<div class="close_overlay"></div>
+			</form>
+
+		</div>
+	</div>
+	{% endif %}
+	<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+	<script src="{% static 'js/slick.js' %}"></script>
+	<script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+	<script src="{% static 'js/script.js' %}"></script>
+	{% if not user.is_authenticated %}
+	<script>
+	$(document).ready(function(){
+		$(".user").click(function( event ){
+		event.preventDefault();
+		$(".overlay").show();
+	});
+	})
+	</script>
+	{% endif %}
+</body>
+</html>
