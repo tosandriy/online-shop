@@ -346,6 +346,7 @@ main{
     border:1px #EDEDED solid;
     padding: 5px;
     font-size: 16px;
+    border-radius:5px ;
 }
 .prise_gap>input:first-child{
     margin-right: 10px;
@@ -796,7 +797,7 @@ footer{
 .out_of_stock{
     font-size: 18px;
     margin-left: 10px;
-    color: rgba(0,0,0,0.7);
+    color: #4D4D4D;
 }
 .select_container{
     display: inline-block;
@@ -815,6 +816,7 @@ footer{
     border:1px solid #C4C4C4;
     border-radius: 5px;
     z-index: 99;
+    overflow: hidden;
 }
 .sort_list-open{
     display: block;
@@ -835,21 +837,21 @@ footer{
     vertical-align: middle;
     transition: 0.3s;
 }
-.select_list_wrapper_sort{
+/*.select_list_wrapper_sort{
     overflow: hidden;
-}
+}*/
 .select_list_item_sort{
     text-align: left;
     padding: 10px;
 }
-.select_list_item_sort:first-child{
+/*.select_list_item_sort:first-child{
     border-radius: 5px 5px 0 0;
 }
 .select_list_item_sort:last-child{
     border-radius: 0 0 5px 5px;
-}
+}*/
 .select_list_item_sort:hover{
-    background-color: #EDEDED;
+    background-color: #C4C4C4;
 }
 .select_list_wrapper_sort *{
     cursor: pointer;
@@ -1044,6 +1046,26 @@ footer{
     position: relative;
     
 }
+.overlay_form>label{
+    position: relative;
+    width: 350px;
+}
+.overlay_form>label>.message{
+    font-size: 12px;
+    position: absolute;
+    width: 100%;
+    max-height: 40px;
+    overflow: hidden;
+    color: #4D4D4D;
+    padding: 5px;
+    display: none;
+}
+.overlay_form>label>.show_message,.overlay_form>label>.show_err{
+    display: block;
+}
+.overlay_form>label>.show_err{
+    color: #FF0000;
+}
 .close_overlay{
     background-image: url(../images/x.svg);
     background-size: contain;
@@ -1070,6 +1092,12 @@ footer{
     color: #000;
     width: 350px;
     font-family: "DINPro","Segoe UI","Mina", sans-serif;
+}
+.overlay_input_err{
+    border-bottom:1px solid #FF0000;
+}
+.overlay_input::placeholder {
+    color: #787878;
 }
 .rememberme>span,.rememberme_checkbox{
     cursor: pointer;
