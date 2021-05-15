@@ -46,7 +46,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class BrandSerializer(serializers.ModelSerializer):
-    logo = serializers.SerializerMethodField
+    logo = serializers.SerializerMethodField('get_brand_logo')
 
     class Meta:
         model = Brand

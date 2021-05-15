@@ -8,11 +8,9 @@ import arrow from "../images/arrow_black.png";
 import {fetchProductsData} from "../FetchProductApi.js";
 
 
-const initialResource = fetchProductsData();
+
 
 function ProductsList(props) {
-
-    const [resource, setResource] = useState(initialResource);
     const [season, setSeason] = useState([]);
     const [size, setSize] = useState([]);
     const [from, setFrom] = useState("");
@@ -22,6 +20,8 @@ function ProductsList(props) {
     const [order, setOrder] = useState("up");
     const [page, setPage] = useState("1");
 
+    const initialResource = fetchProductsData(order, page, props.match.params.product_type);
+    const [resource, setResource] = useState(initialResource);
     return (
         <main id="main" class="main_items">
             <div class="main_content">

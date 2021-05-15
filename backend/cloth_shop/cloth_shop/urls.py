@@ -1,6 +1,7 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 
@@ -21,6 +22,13 @@ urlpatterns = [
     path('login', views.MyLoginView.as_view(template_name='login.html'), name='login'),
     path('purchase_history', views.purchase_history_view,name='history'),
     path('cart', views.cart_view, name='cart'),
+
+    # api
+    url('rest-auth/', include('rest_auth.urls')),
+    url('rest-auth/registration/', include('rest_auth.registration.urls')),
+
+    url('api/email/', api_views.EmailAPIView.as_view()),
+
     path('api/buy', views.before_payment_for_order_view, name='buy'),
     path('api/add_to_cart/<product_id>/<size>/<amount>',views.AddToCartAPIView.as_view(),name='add_to_cart'),
 

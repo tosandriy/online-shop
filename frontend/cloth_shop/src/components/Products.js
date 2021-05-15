@@ -25,7 +25,7 @@ function Products(props) {
     console.log(products);
     return (
         products.map((product) =>
-                <Product product={product} />
+                <Product product={product} key={product.pk}/>
 
         )
     )

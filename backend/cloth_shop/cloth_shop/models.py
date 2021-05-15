@@ -53,8 +53,8 @@ class MyUserManager(BaseUserManager):
             raise ValueError('Users must have an email address')
 
         user = self.model(
-            email = MyUserManager.normalize_email(email),
-            password = password,
+            email=MyUserManager.normalize_email(email),
+            password=password,
         )
 
         user.set_password(password)
@@ -65,8 +65,9 @@ class MyUserManager(BaseUserManager):
         if not email:
             raise ValueError('Users must have an email address')
 
-        user = self.create_user(email,
-            password = password,
+        user = self.create_user(
+            email=email,
+            password=password,
         )
 
         user.is_superuser = True
@@ -83,7 +84,6 @@ class MyUser(AbstractBaseUser):
         db_index=True,
         name="email"
     )
-
     is_superuser = models.BooleanField(default=False)
 
     objects = MyUserManager()
@@ -127,4 +127,4 @@ class Cart(models.Model):
     items = models.ManyToManyField(Item)
 
     def get_cart_price(self):
-        return sum((item.product.price for item in self.items.all()))
+        return sum((item.product.price for item in self.items.all().select_related("product")))

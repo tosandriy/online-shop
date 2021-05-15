@@ -26,7 +26,7 @@ SECRET_KEY = 'j0w$*0z2zzpu%htuy6ixh5hgpuv#9lh$f%nys@+43155gup8x='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost","127.0.0.1"]
 
 
 # Application definition
@@ -34,10 +34,16 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
 
     # libraries/frameworks
     'crispy_forms',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
     'corsheaders',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -61,7 +67,7 @@ MIDDLEWARE = [
 
 SECURE_PROXY_SSL_HEADER = None
 SECURE_SSL_REDIRECT = False
-
+SITE_ID = 1
 
 ROOT_URLCONF = 'cloth_shop.urls'
 
@@ -106,6 +112,15 @@ CORS_ORIGIN_WHITELIST = (
 
 CSRF_COOKIE_NAME = "csrftoken"
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'cloth_shop.api.rest-auth.serializers.CustomRegisterSerializer',
+    'LOGIN_SERIALIZER': 'cloth_shop.api.rest-auth.serializers.CustomLoginSerializer',
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -194,3 +209,13 @@ MEDIA_ROOT = (os.path.join(BASE_DIR, '/media/'))
 ACCOUNT_ID = 'id of account'
 
 SECRET_KEY_YOOKASSA = 'secret key of account'
+
+# rest-auth settings
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_EMAIL_VERIFICATION = "none"

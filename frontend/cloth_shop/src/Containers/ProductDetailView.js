@@ -4,18 +4,17 @@ import axios from 'axios';
 import ProductInfoForm from '../components/ProductInfoForm.js';
 import {fetchProductData} from '../FetchProductApi.js';
 
-const initialResource = fetchProductData();
 
-function ProductDetail() {
 
+function ProductDetail(props) {
+    const initialResource = fetchProductData(props.match.params.product_id);
     const [resource, setResource] = useState(initialResource);
     const [size, setSize] = useState(null);
-    console.log(resource);
     return (
     <>
         <main id="main" class="main_item">
             <div class="main_content">
-                <div class="item_descr ">
+                <div class="item_descr">
                     <Suspense fallback={<NameCallback/>}>
                         <ProductName resource={resource}/>
                     </Suspense>

@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 
-const fetchProduct = () => {
-    return axios.get("http://127.0.0.1:8000/api/product/1")
+const fetchProduct = (product_id) => {
+    return axios.get("http://127.0.0.1:8000/api/product/" + product_id)
 }
 
-const fetchProducts = (order, page) => {
-    return axios.get("http://127.0.0.1:8000/api/products/" + order + "?page=" + page)
+const fetchProducts = (order, page, product_type) => {
+    return axios.get("http://127.0.0.1:8000/api/products/" + order + "?page=" + page + "&product_type=" + product_type)
 }
 
 const fetchBrands = () => {
@@ -14,8 +14,6 @@ const fetchBrands = () => {
 }
 
 const fetchFilteredProducts = (brand,season,size,from,to, order, page) => {
-    console.log("http://127.0.0.1:8000/api/filter?brand=" + brand + "&season=" + season +
-        "&size=" + size + "&from=" + from + "&to=" + to + "&order=" + order + "&page=" + page);
     return axios.get("http://127.0.0.1:8000/api/filter?brand=" + brand + "&season=" + season +
         "&size=" + size + "&from=" + from + "&to=" + to + "&order=" + order + "&page=" + page)
 }
@@ -46,8 +44,8 @@ function wrapPromise(promise) {
   };
 };
 
-export function fetchProductsData(order="up", page="1") {
-    let productPromise = fetchProducts(order, page);
+export function fetchProductsData(order="up", page="1", product_type="all") {
+    let productPromise = fetchProducts(order, page, product_type);
 
     return {
         products: wrapPromise(productPromise)
@@ -62,8 +60,8 @@ export function fetchFilteredProductsData(brand, season, size, from, to, order, 
     }
 }
 
-export function fetchProductData() {
-    let productPromise = fetchProduct();
+export function fetchProductData(product_id) {
+    let productPromise = fetchProduct(product_id);
 
     return {
         product: wrapPromise(productPromise)
