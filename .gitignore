@@ -1,5 +1,5 @@
 venv
-node_modules
+node_modules/
 *.json
 __pycache__/
 *.pyc
