@@ -15,6 +15,7 @@ class SignInForm extends React.Component {
                 this.state.rememberMe,
             );
         }
+        this.props.setIsSignInToggled(false);
     }
 
     constructor(props) {

@@ -96,5 +96,8 @@ export const authCheckState = () => {
         if(token !== undefined) {
             dispatch(authSuccess(token))
         }
+        else{
+            dispatch(authFail(token))
+        }
     }
 }

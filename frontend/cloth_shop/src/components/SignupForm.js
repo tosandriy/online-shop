@@ -21,6 +21,7 @@ class RegisterForm extends React.Component {
             this.state.password2
         );
         }
+        this.props.setIsSignUpToggled(false);
     }
 
     constructor(props) {
