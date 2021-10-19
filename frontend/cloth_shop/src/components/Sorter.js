@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {fetchFilteredProductsData} from "../FetchProductApi.js"
+import {fetchFilteredProductsData} from "../Api.js"
 
 
 function OrderTitle(props) {

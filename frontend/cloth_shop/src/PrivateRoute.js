@@ -1,6 +1,6 @@
 import {Redirect, Route} from 'react-router-dom';
 import React, {useState, useEffect} from 'react';
-import MainPage from "./Containers/MainPageView";
+import MainPage from "./containers/MainPageView";
 import { useSelector, useDispatch } from 'react-redux';
 import { authStart, authSuccess } from './store/actions/auth';
 import {getCookie} from './js/cookie.js';

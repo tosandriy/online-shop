@@ -12,7 +12,7 @@ function Brands(props) {
 
     return (
         <div class="filter_content filter_list season_list">
-            {brands.map(brand => <Brand brand={brand} setBrand={props.setBrand}/>)}
+            {brands.map(brand => <Brand brand={brand} setBrand={props.setBrand} onBrandChange={props.onBrandChange}/>)}
         </div>
     )
 }
@@ -20,7 +20,7 @@ function Brands(props) {
 function Brand(props) {
     return (
         <label key={props.brand.name}>
-            <input type="checkbox" name={props.brand.name} value={props.brand.name} onChange={(e) => props.setBrand(e.target.value)}/>
+            <input type="checkbox" name={props.brand.name} value={props.brand.name} onChange={props.onBrandChange}/>
             <span>{props.brand.name}</span>
         </label>
     )

@@ -1,6 +1,6 @@
 from rest_framework import serializers
-
-from ..models import Product, Brand
+from loguru import logger
+from ..models import Product, Brand, Item, Cart
 
 
 class ProductBriefSerializer(serializers.ModelSerializer):
@@ -46,11 +46,45 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class BrandSerializer(serializers.ModelSerializer):
-    logo = serializers.SerializerMethodField('get_brand_logo')
+    brand_logo = serializers.SerializerMethodField('get_brand_logo')
 
     class Meta:
         model = Brand
-        fields = ('logo','name')
+        fields = ('brand_logo', 'name')
 
     def get_brand_logo(self, obj):
+        logger.info(obj)
+        logger.info(obj.__dict__)
         return obj.logo.url
+
+
+class ItemProductSerializer(serializers.ModelSerializer):
+    brand = BrandSerializer(many=True)
+
+    class Meta:
+        model = Product
+        fields = ('pk', 'name', 'price', 'main_photo', 'brand')
+
+
+class ItemSerializer(serializers.ModelSerializer):
+    product = ItemProductSerializer()
+
+    class Meta:
+        model = Item
+        fields = ('product', 'size', 'amount')
+
+
+class CartSerializer(serializers.ModelSerializer):
+    items = ItemSerializer(many=True)
+    cart_price = serializers.SerializerMethodField('get_cart_price')
+    count = serializers.SerializerMethodField('get_items_amount')
+
+    def get_cart_price(self, obj):
+        return obj.get_cart_price()
+
+    def get_items_amount(self, obj):
+        return obj.get_items_amount()
+
+    class Meta:
+        model = Cart
+        fields = ('items', 'count', 'cart_price', 'id', 'status')

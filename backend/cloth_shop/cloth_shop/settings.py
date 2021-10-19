@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 
+from loguru import logger
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -105,6 +107,11 @@ LOGGING = {
         'handlers': ['console'],
     }
 }
+
+logger.add("logs/log__{time:YYYY}_{time:MM}.log",
+           format="{time:MMMM} {time:DD} - {time:HH}:{time:mm}:{time:ss} | {level} | {message}",
+           encoding="utf-8",
+           level="INFO")
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',

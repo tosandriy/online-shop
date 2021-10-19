@@ -13,10 +13,15 @@ class SizeSelectButton extends React.Component {
     }
 
     currentSelectedSize = () => {
-        if (this.props.sizes) {
+        if (this.props.size){
+            return this.props.size
+        }
+        else if (this.props.sizes) {
             return this.props.sizes[0]
         }
-        return "Нет в наличии"
+        else {
+            return "Нет в наличии"
+        }
     }
 
     render() {

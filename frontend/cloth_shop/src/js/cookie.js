@@ -11,6 +11,7 @@ export function getCookie(name, json=false) {
   let matches = document.cookie.match(new RegExp(
     "(?:^|; )" + name.replace(/([.$?*|{}()\[\]\\\/+^])/g, '\\$1') + "=([^;]*)"
   ));
+  console.log("document.cookie: " + document.cookie)
   if (matches) {
     let res = decodeURIComponent(matches[1]);
     if (json) {

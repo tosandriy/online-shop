@@ -1,9 +1,25 @@
 import React from 'react';
+import {fetchCartData} from '../Api';
 
 
 class Cart extends React.Component {
     constructor(props) {
         super(props)
+
+        this.state = {
+            cart_hash: null
+        }
+    }
+
+    componentDidUpdate(newProps) {
+        let store = newProps.store;
+        if (store) {
+            let state = store.getState();
+            if (state.cart_hash !== null) {
+                const initialResource = fetchCartData(state.cart_hash);
+                this.setState({initialResource: initialResource});
+            }
+        }
     }
 
     render() {

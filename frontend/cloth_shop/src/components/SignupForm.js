@@ -2,7 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 
-import * as actions from '../store/actions/auth.js'
+import * as actions from '../store/actions/auth.js';
+import {getEmail} from '../Api';
 
 class RegisterForm extends React.Component {
 
@@ -66,7 +67,8 @@ class RegisterForm extends React.Component {
             this.setState({emailStatus: false, emailErrorText: "Введите верный Email."})
         }
         else {
-            let isEmailUnique = await axios.get("http://127.0.0.1:8000/api/email/" + "?email=" + e.target.value);
+            let response = await getEmail(e.target.value);
+            let isEmailUnique = response.isEmailUnique;
             console.log(isEmailUnique);
             if(!isEmailUnique){
                 this.setState({emailStatus: false, emailErrorText: "Этот Email занят."})

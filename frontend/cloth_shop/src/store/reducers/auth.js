@@ -1,6 +1,5 @@
 import * as actionTypes from '../actions/actionTypes.js';
 import { updateObject } from '../utility';
-import {getCookie} from '../../js/cookie';
 const initialState = {
     token: null,
     error: null,

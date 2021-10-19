@@ -5,6 +5,8 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 from . import choices
 
+import uuid
+
 
 class Brand(models.Model):
     """A brand of the Product"""
@@ -33,7 +35,7 @@ class Product(models.Model):
     amount_XXL = models.IntegerField(default=0)
 
     def get_able_sizes(self):
-        return (field[0] for field in choices.FIELDS if getattr(self,field[0]))
+        return (field[0] for field in choices.FIELDS if getattr(self, field[0]))
 
     def __str__(self):
         return "{} | {}".format(self.name,self.price)
@@ -43,6 +45,96 @@ class Photo(models.Model):
     """A photo of the product"""
     photo = models.ImageField(upload_to='cloth_shop/media/images/product_photos')
     product = models.ForeignKey(to=Product, on_delete=models.CASCADE, related_name='photos')
+
+
+class ShippingInfo(models.Model):
+    first_name = models.CharField(
+        verbose_name='Имя',
+        max_length=64,
+        unique=False,
+        null=True,
+        editable=True
+    )
+
+    surname = models.CharField(
+        verbose_name='Фамилия',
+        max_length=128,
+        unique=False,
+        null=True,
+        editable=True
+    )
+
+    patronymic = models.CharField(
+        verbose_name='Отчество',
+        max_length=64,
+        unique=False,
+        null=True,
+        editable=True
+    )
+
+    phone_number = models.CharField(
+        verbose_name='Телефон',
+        max_length=16,
+        unique=True,
+        null=True,
+        editable=True
+    )
+
+    country = models.CharField(
+        verbose_name='Страна',
+        max_length=64,
+        unique=False,
+        null=True,
+        editable=True
+    )
+
+    city = models.CharField(
+        verbose_name='Город',
+        max_length=64,
+        unique=False,
+        null=True,
+        editable=True
+    )
+
+    region = models.CharField(
+        verbose_name='Край/область/регион',
+        max_length=64,
+        unique=False,
+        null=True,
+        editable=True
+    )
+
+    street = models.CharField(
+        verbose_name='Улица',
+        max_length=64,
+        unique=False,
+        null=True,
+        editable=True
+    )
+
+    building = models.CharField(
+        verbose_name='Дом',
+        max_length=64,
+        unique=False,
+        null=True,
+        editable=True
+    )
+
+    flat = models.CharField(
+        verbose_name='Квартира',
+        max_length=64,
+        unique=False,
+        null=True,
+        editable=True
+    )
+
+    index = models.CharField(
+        verbose_name='Индекс',
+        max_length=64,
+        unique=False,
+        null=True,
+        editable=True
+    )
 
 
 class MyUserManager(BaseUserManager):
@@ -84,6 +176,12 @@ class MyUser(AbstractBaseUser):
         db_index=True,
         name="email"
     )
+
+    shipping_info = models.ForeignKey(to=ShippingInfo,
+                                      on_delete=models.CASCADE,
+                                      null=True,
+                                      related_name="user")
+
     is_superuser = models.BooleanField(default=False)
 
     objects = MyUserManager()
@@ -118,13 +216,18 @@ class Order(models.Model):
     status = models.CharField(choices=choices.STATUSES, default=choices.STATUSES[0][0], max_length=20)
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='orders')
     items = models.ManyToManyField(Item)
-    payment_id = models.CharField(max_length=100,unique=True)
+    payment_id = models.CharField(max_length=100, unique=True)
 
 
 class Cart(models.Model):
     """A model to store user's products he wants to buy"""
-    owner = models.OneToOneField(MyUser, related_name='cart', on_delete=models.CASCADE, unique=True)
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True)
+    owner = models.OneToOneField(MyUser, related_name='cart', on_delete=models.CASCADE, unique=True, null=True)
     items = models.ManyToManyField(Item)
+    status = models.CharField(choices=choices.CART_STATUSES, default=choices.CART_STATUSES[0][0], max_length=20)
 
     def get_cart_price(self):
         return sum((item.product.price for item in self.items.all().select_related("product")))
+
+    def get_items_amount(self):
+        return self.items.count()

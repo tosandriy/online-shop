@@ -5,17 +5,16 @@ import Sorter from '../components/Sorter.js';
 import Products from "../components/Products.js";
 import arrow from "../images/arrow_black.png";
 
-import {fetchProductsData} from "../FetchProductApi.js";
-
-
+import {fetchProductsData} from "../Api.js";
 
 
 function ProductsList(props) {
+    const [brand, setBrand] = useState([]);
     const [season, setSeason] = useState([]);
     const [size, setSize] = useState([]);
     const [from, setFrom] = useState("");
     const [to, setTo] = useState("");
-    const [brand, setBrand] = useState([]);
+
 
     const [order, setOrder] = useState("up");
     const [page, setPage] = useState("1");

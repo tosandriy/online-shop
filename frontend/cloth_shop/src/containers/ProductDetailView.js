@@ -2,7 +2,7 @@ import React, {Suspense, useState} from 'react';
 import axios from 'axios';
 
 import ProductInfoForm from '../components/ProductInfoForm.js';
-import {fetchProductData} from '../FetchProductApi.js';
+import {HOST, fetchProductData} from '../Api.js';
 
 
 
@@ -93,7 +93,7 @@ function ProductImage(props) {
 
     return (
         <div class="item_pic">
-            <img src={"http://127.0.0.1:8000" + product.main_photo}/>
+            <img src={HOST + product.main_photo}/>
         </div>
     )
 }

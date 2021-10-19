@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import './css/slick.css';
 import './css/slick-theme.css';
@@ -11,20 +12,42 @@ import profile from './images/user_black.png';
 import SignupForm from './components/SignupForm.js'
 import SignInForm from './components/SignInForm.js'
 
-class NavBar extends React.Component {
 
-    shouldComponentUpdate(a,b) {
-        return false
-    }
+class NavBar extends React.Component {
 
     render() {
         return (
             <nav>
-                <a href="/products/all">ВСЕ</a>
-                <a href="/products/t-shirts">ФУТБОЛКИ</a>
-                <a href="/products/hoodie">ХУДИ</a>
-                <a href="/products/polo">ПОЛО</a>
-                <a href="/products/shirts">РУБАШКИ</a>
+                <NavLink
+                    to="/products/all"
+                    exact
+                >
+                    ВСЕ
+                </NavLink>
+                <NavLink
+                    to="/products/t-shirts"
+                    exact
+                >
+                    ФУТБОЛКИ
+                </NavLink>
+                <NavLink
+                    to="/products/hoodie"
+                    exact
+                >
+                    ХУДИ
+                </NavLink>
+                <NavLink
+                    to="/products/polo"
+                    exact
+                >
+                    ПОЛО
+                </NavLink>
+                <NavLink
+                    to="/products/shirts"
+                    exact
+                >
+                    РУБАШКИ
+                </NavLink>
             </nav>
         )
     }
@@ -38,17 +61,26 @@ class CustomLayout extends React.Component {
             isSignInToggled: false,
             isSignUpToggled: false
         }
-        this.signInClickHandler = this.signInClickHandler.bind(this);
-        this.signUpClickHandler = this.signUpClickHandler.bind(this);
+        this.toggleSignIn = this.toggleSignIn.bind(this);
+        this.toggleSignUp = this.toggleSignUp.bind(this);
         this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this);
+        this.profileClickHandler = this.profileClickHandler.bind(this);
     }
 
-    signInClickHandler(value) {
+    toggleSignIn(value) {
         this.setState({isSignInToggled: value})
     }
 
-    signUpClickHandler(value) {
+    toggleSignUp(value) {
         this.setState({isSignUpToggled: value})
+    }
+
+    profileClickHandler(event) {
+        if (! this.props.isAuthenticated) {
+            event.preventDefault();
+            this.toggleSignIn(!this.state.isSignInToggled);
+        }
+
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -70,12 +102,16 @@ class CustomLayout extends React.Component {
                             <NavBar />
                             <div class="header_user">
                             { this.props.isAuthenticated ?
-                              <a href="/cart" class="cart"><img src={cart}/></a>
+                                <NavLink to="/cart" className="cart" exact>
+                                    <img src={cart}/>
+                                </NavLink>
                               :
                                ""
                             }
 
-                                <a href="/profile" class="user" onClick={(e) =>  {e.preventDefault(); this.signInClickHandler(!this.state.isSignInToggled)}}><img src={profile}/></a>
+                                <NavLink to="/profile" className="user" exact onClick={this.profileClickHandler}>
+                                    <img src={profile}/>
+                                </NavLink>
                             </div>
                         </div>
                     </div>
@@ -87,9 +123,9 @@ class CustomLayout extends React.Component {
 
                 </footer>
                 <div class="overlay" style={this.state.isSignInToggled || this.state.isSignUpToggled ? {display:  "block"} : {display:  "none"}} >
-                    <div class="overlay_container" onClick={(e) => {e.preventDefault(); this.signInClickHandler(false); this.signUpClickHandler(false)}}>
-                        <SignupForm isSignUpToggled={this.state.isSignUpToggled} setIsSignUpToggled={this.signUpClickHandler} />
-                        <SignInForm isSignInToggled={this.state.isSignInToggled} setIsSignInToggled={this.signInClickHandler} setIsSignUpToggled={this.signUpClickHandler} />
+                    <div class="overlay_container" onClick={(e) => {e.preventDefault(); this.toggleSignIn(false); this.toggleSignUp(false)}}>
+                        <SignupForm isSignUpToggled={this.state.isSignUpToggled} setIsSignUpToggled={this.toggleSignUp} />
+                        <SignInForm isSignInToggled={this.state.isSignInToggled} setIsSignInToggled={this.toggleSignIn} setIsSignUpToggled={this.toggleSignUp} />
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {HOST} from '../Api'
 
 class Product extends React.Component {
 
@@ -7,7 +7,7 @@ class Product extends React.Component {
         return (
             <a href={"/product/" + this.props.product.pk} class="product">
                 <div class="product_image">
-                    <img src={'http://127.0.0.1:8000' + this.props.product.main_photo}/>
+                    <img src={HOST + this.props.product.main_photo}/>
                 </div>
                 <div class="product_discription">
                     {this.props.product.name}

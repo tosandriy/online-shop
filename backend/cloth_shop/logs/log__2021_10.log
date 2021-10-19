@@ -1,0 +1,311 @@
+October 17 - 13:22:10 | INFO | ruines
+October 17 - 13:22:10 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001C4F08B31C0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 17 - 15:07:13 | INFO | ruines
+October 17 - 15:07:13 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001C4F0935D30>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 17 - 15:09:19 | INFO | ruines
+October 17 - 15:09:19 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001C4F0910CD0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 17 - 15:09:20 | INFO | product_type: t-shirts
+October 17 - 15:09:21 | INFO | product_type: t-shirts
+October 17 - 15:09:21 | INFO | product_type: hoodie
+October 17 - 15:09:21 | INFO | product_type: hoodie
+October 17 - 15:09:22 | INFO | product_type: polo
+October 17 - 15:09:22 | INFO | product_type: polo
+October 17 - 15:09:26 | INFO | product_type: t-shirts
+October 17 - 15:09:26 | INFO | product_type: t-shirts
+October 17 - 15:09:30 | INFO | ruines
+October 17 - 15:09:30 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001C4F0990BE0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 17 - 15:56:14 | INFO | ruines
+October 17 - 15:56:14 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001C4F087B790>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 17 - 16:03:06 | INFO | ruines
+October 17 - 16:03:06 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001C4F071EFD0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 17 - 16:03:06 | INFO | ruines
+October 17 - 16:03:06 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001C4F087BB80>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 17 - 16:37:59 | INFO | ruines
+October 17 - 16:37:59 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001C4F0910160>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 17 - 16:37:59 | INFO | ruines
+October 17 - 16:37:59 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001C4F0848B20>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 17 - 17:01:12 | INFO | ruines
+October 17 - 17:01:12 | INFO | {'_state': <django.db.models.base.ModelState object at 0x00000188409A4730>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 17 - 17:01:12 | INFO | ruines
+October 17 - 17:01:12 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001884098B640>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 17 - 17:01:12 | INFO | ruines
+October 17 - 17:01:12 | INFO | {'_state': <django.db.models.base.ModelState object at 0x00000188409B05B0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 17 - 17:01:12 | INFO | ruines
+October 17 - 17:01:12 | INFO | {'_state': <django.db.models.base.ModelState object at 0x0000018840920D30>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 17 - 17:01:13 | INFO | ruines
+October 17 - 17:01:13 | INFO | {'_state': <django.db.models.base.ModelState object at 0x00000188409AC7F0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 17 - 19:42:21 | INFO | ruines
+October 17 - 19:42:21 | INFO | {'_state': <django.db.models.base.ModelState object at 0x0000027E6A06ECD0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 17 - 20:38:21 | ERROR | An error has been caught in function 'dispatch', process 'MainProcess' (11492), thread 'Thread-1' (11204):
+Traceback (most recent call last):
+
+  File "C:\Users\tosandriyy\AppData\Local\Programs\Python\Python39\lib\threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000001B3F915C9D0>
+    └ <Thread(Thread-1, started daemon 11204)>
+
+  File "C:\Users\tosandriyy\AppData\Local\Programs\Python\Python39\lib\threading.py", line 973, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000001B3F915C700>
+    └ <Thread(Thread-1, started daemon 11204)>
+
+  File "C:\Users\tosandriyy\AppData\Local\Programs\Python\Python39\lib\threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(Thread-1, started daemon 11204)>
+    │    │        │    └ (<socket.socket fd=1260, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 8000), raddr...
+    │    │        └ <Thread(Thread-1, started daemon 11204)>
+    │    └ <bound method ThreadingMixIn.process_request_thread of <django.core.servers.basehttp.WSGIServer object at 0x000001B3FD3873D0>>
+    └ <Thread(Thread-1, started daemon 11204)>
+
+  File "C:\Users\tosandriyy\AppData\Local\Programs\Python\Python39\lib\socketserver.py", line 683, in process_request_thread
+    self.finish_request(request, client_address)
+    │    │              │        └ ('127.0.0.1', 56519)
+    │    │              └ <socket.socket fd=1260, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 8000), raddr=...
+    │    └ <function BaseServer.finish_request at 0x000001B3FBBF78B0>
+    └ <django.core.servers.basehttp.WSGIServer object at 0x000001B3FD3873D0>
+
+  File "C:\Users\tosandriyy\AppData\Local\Programs\Python\Python39\lib\socketserver.py", line 360, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    │    │                   │        │               └ <django.core.servers.basehttp.WSGIServer object at 0x000001B3FD3873D0>
+    │    │                   │        └ ('127.0.0.1', 56519)
+    │    │                   └ <socket.socket fd=1260, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 8000), raddr=...
+    │    └ <class 'django.core.servers.basehttp.WSGIRequestHandler'>
+    └ <django.core.servers.basehttp.WSGIServer object at 0x000001B3FD3873D0>
+
+  File "C:\Users\tosandriyy\AppData\Local\Programs\Python\Python39\lib\socketserver.py", line 747, in __init__
+    self.handle()
+    │    └ <function WSGIRequestHandler.handle at 0x000001B3FC381940>
+    └ <django.core.servers.basehttp.WSGIRequestHandler object at 0x000001B3FD7871F0>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\core\servers\basehttp.py", line 176, in handle
+    self.handle_one_request()
+    │    └ <function WSGIRequestHandler.handle_one_request at 0x000001B3FC3819D0>
+    └ <django.core.servers.basehttp.WSGIRequestHandler object at 0x000001B3FD7871F0>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\core\servers\basehttp.py", line 201, in handle_one_request
+    handler.run(self.server.get_app())
+    │       │   │    │      └ <function WSGIServer.get_app at 0x000001B3FC37FE50>
+    │       │   │    └ <django.core.servers.basehttp.WSGIServer object at 0x000001B3FD3873D0>
+    │       │   └ <django.core.servers.basehttp.WSGIRequestHandler object at 0x000001B3FD7871F0>
+    │       └ <function BaseHandler.run at 0x000001B3FC36E820>
+    └ <django.core.servers.basehttp.ServerHandler object at 0x000001B3FD787EB0>
+
+  File "C:\Users\tosandriyy\AppData\Local\Programs\Python\Python39\lib\wsgiref\handlers.py", line 137, in run
+    self.result = application(self.environ, self.start_response)
+    │    │        │           │    │        │    └ <function BaseHandler.start_response at 0x000001B3FC36EB80>
+    │    │        │           │    │        └ <django.core.servers.basehttp.ServerHandler object at 0x000001B3FD787EB0>
+    │    │        │           │    └ {'__INTELLIJ_COMMAND_HISTFILE__': 'C:\\Users\\tosandriyy\\AppData\\Local\\JetBrains\\PyCharmCE2021.1\\terminal\\history\\pyth...
+    │    │        │           └ <django.core.servers.basehttp.ServerHandler object at 0x000001B3FD787EB0>
+    │    │        └ <django.contrib.staticfiles.handlers.StaticFilesHandler object at 0x000001B3FD398E80>
+    │    └ None
+    └ <django.core.servers.basehttp.ServerHandler object at 0x000001B3FD787EB0>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\contrib\staticfiles\handlers.py", line 76, in __call__
+    return self.application(environ, start_response)
+           │    │           │        └ <bound method BaseHandler.start_response of <django.core.servers.basehttp.ServerHandler object at 0x000001B3FD787EB0>>
+           │    │           └ {'__INTELLIJ_COMMAND_HISTFILE__': 'C:\\Users\\tosandriyy\\AppData\\Local\\JetBrains\\PyCharmCE2021.1\\terminal\\history\\pyth...
+           │    └ <django.core.handlers.wsgi.WSGIHandler object at 0x000001B3FBCFEF40>
+           └ <django.contrib.staticfiles.handlers.StaticFilesHandler object at 0x000001B3FD398E80>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\core\handlers\wsgi.py", line 133, in __call__
+    response = self.get_response(request)
+               │    │            └ <WSGIRequest: POST '/api/cart'>
+               │    └ <function BaseHandler.get_response at 0x000001B3FC335040>
+               └ <django.core.handlers.wsgi.WSGIHandler object at 0x000001B3FBCFEF40>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\core\handlers\base.py", line 130, in get_response
+    response = self._middleware_chain(request)
+               │    │                 └ <WSGIRequest: POST '/api/cart'>
+               │    └ <function convert_exception_to_response.<locals>.inner at 0x000001B3FBC71DC0>
+               └ <django.core.handlers.wsgi.WSGIHandler object at 0x000001B3FBCFEF40>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               │            └ <WSGIRequest: POST '/api/cart'>
+               └ <corsheaders.middleware.CorsMiddleware object at 0x000001B3FBBC3A60>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\utils\deprecation.py", line 117, in __call__
+    response = response or self.get_response(request)
+               │           │    │            └ <WSGIRequest: POST '/api/cart'>
+               │           │    └ <function convert_exception_to_response.<locals>.inner at 0x000001B3FBC71E50>
+               │           └ <corsheaders.middleware.CorsMiddleware object at 0x000001B3FBBC3A60>
+               └ None
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               │            └ <WSGIRequest: POST '/api/cart'>
+               └ <django.middleware.security.SecurityMiddleware object at 0x000001B3FBC6A7C0>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\utils\deprecation.py", line 117, in __call__
+    response = response or self.get_response(request)
+               │           │    │            └ <WSGIRequest: POST '/api/cart'>
+               │           │    └ <function convert_exception_to_response.<locals>.inner at 0x000001B3FBC71EE0>
+               │           └ <django.middleware.security.SecurityMiddleware object at 0x000001B3FBC6A7C0>
+               └ None
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               │            └ <WSGIRequest: POST '/api/cart'>
+               └ <django.contrib.sessions.middleware.SessionMiddleware object at 0x000001B3FBC6A7F0>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\utils\deprecation.py", line 117, in __call__
+    response = response or self.get_response(request)
+               │           │    │            └ <WSGIRequest: POST '/api/cart'>
+               │           │    └ <function convert_exception_to_response.<locals>.inner at 0x000001B3FBC71F70>
+               │           └ <django.contrib.sessions.middleware.SessionMiddleware object at 0x000001B3FBC6A7F0>
+               └ None
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               │            └ <WSGIRequest: POST '/api/cart'>
+               └ <django.middleware.common.CommonMiddleware object at 0x000001B3FBC6A8E0>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\utils\deprecation.py", line 117, in __call__
+    response = response or self.get_response(request)
+               │           │    │            └ <WSGIRequest: POST '/api/cart'>
+               │           │    └ <function convert_exception_to_response.<locals>.inner at 0x000001B3FBC719D0>
+               │           └ <django.middleware.common.CommonMiddleware object at 0x000001B3FBC6A8E0>
+               └ None
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               │            └ <WSGIRequest: POST '/api/cart'>
+               └ <django.middleware.csrf.CsrfViewMiddleware object at 0x000001B3FBC6A910>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\utils\deprecation.py", line 117, in __call__
+    response = response or self.get_response(request)
+               │           │    │            └ <WSGIRequest: POST '/api/cart'>
+               │           │    └ <function convert_exception_to_response.<locals>.inner at 0x000001B3FBC741F0>
+               │           └ <django.middleware.csrf.CsrfViewMiddleware object at 0x000001B3FBC6A910>
+               └ None
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               │            └ <WSGIRequest: POST '/api/cart'>
+               └ <django.contrib.auth.middleware.AuthenticationMiddleware object at 0x000001B3FBC6AA00>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\utils\deprecation.py", line 117, in __call__
+    response = response or self.get_response(request)
+               │           │    │            └ <WSGIRequest: POST '/api/cart'>
+               │           │    └ <function convert_exception_to_response.<locals>.inner at 0x000001B3FBC74040>
+               │           └ <django.contrib.auth.middleware.AuthenticationMiddleware object at 0x000001B3FBC6AA00>
+               └ None
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               │            └ <WSGIRequest: POST '/api/cart'>
+               └ <django.contrib.messages.middleware.MessageMiddleware object at 0x000001B3FBC6ABE0>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\utils\deprecation.py", line 117, in __call__
+    response = response or self.get_response(request)
+               │           │    │            └ <WSGIRequest: POST '/api/cart'>
+               │           │    └ <function convert_exception_to_response.<locals>.inner at 0x000001B3FBC74280>
+               │           └ <django.contrib.messages.middleware.MessageMiddleware object at 0x000001B3FBC6ABE0>
+               └ None
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               │            └ <WSGIRequest: POST '/api/cart'>
+               └ <django.middleware.clickjacking.XFrameOptionsMiddleware object at 0x000001B3FBC6ACA0>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\utils\deprecation.py", line 117, in __call__
+    response = response or self.get_response(request)
+               │           │    │            └ <WSGIRequest: POST '/api/cart'>
+               │           │    └ <function BaseHandler._get_response at 0x000001B3FBC74310>
+               │           └ <django.middleware.clickjacking.XFrameOptionsMiddleware object at 0x000001B3FBC6ACA0>
+               └ None
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               │            └ <WSGIRequest: POST '/api/cart'>
+               └ <bound method BaseHandler._get_response of <django.core.handlers.wsgi.WSGIHandler object at 0x000001B3FBCFEF40>>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               │                │         │                └ {}
+               │                │         └ ()
+               │                └ <WSGIRequest: POST '/api/cart'>
+               └ <function CartAPIView at 0x000001B3FD2E0940>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+           │          │       └ {}
+           │          └ (<WSGIRequest: POST '/api/cart'>,)
+           └ <function CartAPIView at 0x000001B3FD2E08B0>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+           │    │        │         │       └ {}
+           │    │        │         └ ()
+           │    │        └ <WSGIRequest: POST '/api/cart'>
+           │    └ <function APIView.dispatch at 0x000001B3FD0FF820>
+           └ <cloth_shop.api.views.CartAPIView object at 0x000001B3FD787310>
+
+> File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               │       │         │       └ {}
+               │       │         └ ()
+               │       └ <rest_framework.request.Request: POST '/api/cart'>
+               └ <bound method CartAPIView.post of <cloth_shop.api.views.CartAPIView object at 0x000001B3FD787310>>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\online-shop\backend\cloth_shop\cloth_shop\api\views.py", line 288, in post
+    return Response(serializer.data, status=status.HTTP_200_OK)
+           │        │          │            │      └ 200
+           │        │          │            └ <module 'rest_framework.status' from 'C:\\Users\\tosandriyy\\PycharmProjects\\pythonProject\\venv\\lib\\site-packages\\rest_f...
+           │        │          └ <property object at 0x000001B3FD091F40>
+           │        └ <unprintable CartSerializer object>
+           └ <class 'rest_framework.response.Response'>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\rest_framework\serializers.py", line 548, in data
+    ret = super().data
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\rest_framework\serializers.py", line 246, in data
+    self._data = self.to_representation(self.instance)
+    │            │    │                 │    └ <Cart: Cart object (e1a0626c-5067-4ee2-89cb-73687cda425f)>
+    │            │    │                 └ <unprintable CartSerializer object>
+    │            │    └ <function Serializer.to_representation at 0x000001B3FD09A3A0>
+    │            └ <unprintable CartSerializer object>
+    └ <unprintable CartSerializer object>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\rest_framework\serializers.py", line 500, in to_representation
+    for field in fields:
+                 └ <generator object Serializer._readable_fields at 0x000001B3FD61ED60>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\rest_framework\serializers.py", line 361, in _readable_fields
+    for field in self.fields.values():
+                 │    └ <django.utils.functional.cached_property object at 0x000001B3FD08B880>
+                 └ <unprintable CartSerializer object>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\django\utils\functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+          │        │        │    │       │    │    └ <unprintable CartSerializer object>
+          │        │        │    │       │    └ <function Serializer.fields at 0x000001B3FD099D30>
+          │        │        │    │       └ <django.utils.functional.cached_property object at 0x000001B3FD08B880>
+          │        │        │    └ 'fields'
+          │        │        └ <django.utils.functional.cached_property object at 0x000001B3FD08B880>
+          │        └ <attribute '__dict__' of 'Field' objects>
+          └ <unprintable CartSerializer object>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\rest_framework\serializers.py", line 349, in fields
+    for key, value in self.get_fields().items():
+                      │    └ <function ModelSerializer.get_fields at 0x000001B3FD09D160>
+                      └ <unprintable CartSerializer object>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\rest_framework\serializers.py", line 1029, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+                  │    │               │                └ FieldResult(pk=<django.db.models.fields.UUIDField: id>, fields=OrderedDict([('status', <django.db.models.fields.CharField: st...
+                  │    │               └ OrderedDict([('items', ItemSerializer(many=True):
+                  │    │                     product = ItemProductSerializer():
+                  │    │                         pk = IntegerField(label='ID'...
+                  │    └ <function ModelSerializer.get_field_names at 0x000001B3FD09D1F0>
+                  └ <unprintable CartSerializer object>
+
+  File "C:\Users\tosandriyy\PycharmProjects\pythonProject\venv\lib\site-packages\rest_framework\serializers.py", line 1125, in get_field_names
+    assert field_name in fields, (
+           │             └ ('items', 'cart_price', 'id', 'status')
+           └ 'count'
+
+AssertionError: The field 'count' was declared on serializer CartSerializer, but has not been included in the 'fields' option.
+October 19 - 20:55:21 | INFO | ruines
+October 19 - 20:55:21 | INFO | {'_state': <django.db.models.base.ModelState object at 0x00000278CA7ADFD0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
