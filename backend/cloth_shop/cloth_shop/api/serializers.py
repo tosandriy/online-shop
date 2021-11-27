@@ -63,7 +63,7 @@ class ItemProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('pk', 'name', 'price', 'main_photo', 'brand')
+        fields = ('id', 'name', 'price', 'main_photo', 'brand')
 
 
 class ItemSerializer(serializers.ModelSerializer):
@@ -71,7 +71,7 @@ class ItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Item
-        fields = ('product', 'size', 'amount')
+        fields = ('product', 'size', 'amount', 'id')
 
 
 class CartSerializer(serializers.ModelSerializer):

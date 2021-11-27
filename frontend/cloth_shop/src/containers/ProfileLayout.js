@@ -29,8 +29,8 @@ class ProfileLayout extends React.Component {
         let store = newProps.store;
         if (store) {
             let state = store.getState();
-            if (state.token !== null) {
-                const initialResource = fetchShippingInfoData(state.token);
+            if (state.auth.token !== null) {
+                const initialResource = fetchShippingInfoData(state.auth.token);
                 this.setState({initialResource: initialResource});
             }
         }

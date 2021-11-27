@@ -1,27 +1,24 @@
-import axios from 'axios';
 import * as actionTypes from './actionTypes';
 import {getCookie, setCookie, deleteCookie} from '../../js/cookie.js';
+import {loginUser, registerUser} from '../../Api';
 
 export const authStart = () => {
     return {
-        type: actionTypes.AUTH_START,
-        loading: true
+        type: actionTypes.AUTH_START
     }
 }
 
 export const authSuccess = token => {
     return {
         type: actionTypes.AUTH_SUCCESS,
-        token: token,
-        loading: false
+        token: token
     }
 }
 
 export const authFail = error => {
     return {
         type: actionTypes.AUTH_FAIL,
-        error: error,
-        loading: false
+        error: error
     }
 }
 
@@ -33,17 +30,10 @@ export const logout = () => {
 }
 
 
-export const authLogin = (email, password, rememberMe) => {
+export const authLogin = (email, password, rememberMe, cart_hash) => {
     return dispatch => {
         dispatch(authStart());
-        axios({
-          method: 'post',
-          url: 'http://127.0.0.1:8000/rest-auth/login/',
-          data: {
-            email: email,
-            password: password
-          }
-        })
+        loginUser(email, password, rememberMe)
         .then(res => {
             console.log(res);
             const token = res.data.key;
@@ -65,15 +55,7 @@ export const authLogin = (email, password, rememberMe) => {
 export const authSignup = (email, password1, password2) => {
     return dispatch => {
         dispatch(authStart());
-        axios({
-          method: 'post',
-          url: 'http://127.0.0.1:8000/rest-auth/registration/',
-          data: {
-            email : email,
-            password1 : password1,
-            password2 : password2
-          }
-        })
+        registerUser()
         .then(result => {
             console.log(result);
             if(!result.data.error) {

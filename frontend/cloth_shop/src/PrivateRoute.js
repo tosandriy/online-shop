@@ -14,7 +14,7 @@ export default function PrivateRoute({ component: Component, token,store, ...res
         {...rest}
         render={props => (
 
-          store.getState().token
+          store.getState().auth.token
             ? <Component {...props} />
             : <Redirect to="/" />
         )}

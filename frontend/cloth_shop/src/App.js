@@ -6,13 +6,15 @@ import CustomLayout from './CustomLayout';
 
 import { connect } from 'react-redux';
 
-import * as actions from './store/actions/auth';
+import * as auth_actions from './store/actions/auth';
+import * as cart_actions from './store/actions/cart';
 
 
 class App extends Component {
 
     componentDidMount() {
         this.props.onTryAutoSignup();
+        this.props.onTryGetCart();
     }
 
     render() {
@@ -31,14 +33,15 @@ class App extends Component {
 }
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.token,
-    loading: state.loading
+    isAuthenticated: state.auth.token,
+    loading: state.auth.loading
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTryAutoSignup: () => dispatch(actions.authCheckState())
+    onTryAutoSignup: () => dispatch(auth_actions.authCheckState()),
+    onTryGetCart: () => dispatch(cart_actions.cartCheckState())
   }
 }
 

@@ -32,7 +32,11 @@ urlpatterns = [
 
     path('api/buy', views.before_payment_for_order_view, name='buy'),
     # path('api/add_to_cart/<product_id>/<size>/<amount>',views.AddToCartAPIView.as_view(),name='add_to_cart'),
-    path('api/cart', api_views.CartAPIView.as_view()),
+    path('api/cart', api_views.CartViewSet.as_view({"get": "get_cart_by_hash", "post": "create_new_cart"})),
+    path('api/cart/check-state/', api_views.CartViewSet.as_view({"post": "get_cart_by_hash_or_combine"})),
+    path('api/cart/add', api_views.CartViewSet.as_view({"post": "add_cart_item"})),
+    path('api/cart/remove', api_views.CartViewSet.as_view({"delete": "remove_cart_item"})),
+    path('api/cart/update', api_views.CartViewSet.as_view({"put": "update_cart_item"})),
 
     path('api/products/<order>', api_views.ProductListView.as_view()),
     path('api/product/<pk>', api_views.ProductDetailView.as_view()),

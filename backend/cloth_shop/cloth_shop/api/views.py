@@ -2,9 +2,10 @@ from rest_framework import permissions, authentication, status
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.viewsets import ViewSet
 
-from ..models import Product, Brand, MyUser, Cart, Item, ShippingInfo
-from .serializers import ProductBriefSerializer, ProductSerializer, BrandSerializer, CartSerializer
+from ..models import *
+from .serializers import *
 
 from .. import choices
 
@@ -222,12 +223,15 @@ class EmailAPIView(APIView):
         return Response({"isEmailUnique": is_email_unique})
 
 
-class CartAPIView(APIView):
+class CartViewSet(ViewSet):
+    """
+    Used for operations with cart
+    """
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.AllowAny,)
 
     @logger.catch
-    def get(self, request, format=None, *args, **kwargs):
+    def get_cart_by_hash(self, request,  *args, **kwargs):
         cart_hash = request.data.get("cart_hash")
         user = request.user
         cart = None
@@ -247,43 +251,147 @@ class CartAPIView(APIView):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     @logger.catch
-    def post(self, request, format=None, *args, **kwargs):
+    def get_cart_by_hash_or_combine(self, request, *args, **kwargs):
         cart_hash = request.data.get("cart_hash")
-        item_id = request.data.get("item_id")
-        action = request.data.get("action")
         user = request.user
         cart = None
+        logger.info(user.is_anonymous)
+        if cart_hash:
+            if user.is_anonymous:
+                if cart_hash:
+                    cart = Cart.objects.get(id=cart_hash)
+
+            else:
+                user_cart = Cart.objects.prefetch_related("items").get(owner=user)
+                cart = Cart.objects.prefetch_related("items").get(id=cart_hash)
+                logger.info(cart != user_cart)
+                if cart != user_cart:
+                    for cart_item in cart.items.all():
+                        if user_cart_item := user_cart.items.filter(product_id=cart_item.product.id, size=cart_item.size):
+                            user_cart_item = user_cart_item.first()
+                            user_cart_item.amount = user_cart_item.amount + cart_item.amount
+                            user_cart_item.save()
+                        else:
+                            new_cart_item = Item(
+                                product=cart_item.product,
+                                size=cart_item.size,
+                                amount=cart_item.amount
+                            )
+                            new_cart_item.save()
+                            user_cart.items.add(new_cart_item)
+                    user_cart.save()
+                    cart = user_cart
+
+            if cart:
+                cart_serializer = CartSerializer(cart)
+                return Response(cart_serializer.data, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @logger.catch
+    def create_new_cart(self, request, *args, **kwargs):
+        user = request.user
         created = False
 
         if user.is_anonymous:
-            if cart_hash:
-                cart = Cart.objects.get(id=cart_hash)
-            if not cart:
-                cart = Cart()
-                cart.save()
-                created = True
+            cart = Cart()
+            cart.save()
+            created = True
         else:
             cart = Cart.objects.get(owner=user)
             if not cart:
-                cart = Cart.objects.get(id=cart_hash)
+                cart = Cart()
                 if not cart.owner:
                     cart.owner = user
                     cart.save()
                 elif cart.owner != user:
                     return Response(status=status.HTTP_403_FORBIDDEN)
 
-        if item_id:
-            item = Item.objects.get(pk=item_id)
-
-            if action == "add":
-                cart.items.add(item)
-
-            elif action == "remove":
-                cart.items.remove(item)
-
         if cart:
-            serializer = CartSerializer(instance=cart)
+            serializer = CartSerializer(cart)
             if created:
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    def update_cart_item(self, request, *args, **kwargs):
+        cart_hash = request.data.get("cart_hash")
+        item_hash = request.data.get("item_hash")
+        product_size = request.data.get("product_size")
+        product_amount = request.data.get("product_amount")
+
+        user = request.user
+        cart = get_object_or_404(Cart, id=cart_hash)
+
+        if cart.owner and cart.owner != user:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+
+        if cart_query := cart.items.filter(id=item_hash):
+            cart_item = cart_query.get()
+            if product_size:
+                cart_item.size = product_size
+
+            if product_amount:
+                cart_item.amount = product_amount
+
+            cart_item.save()
+
+            item_serializer = ItemSerializer(cart_item)
+
+            return Response(item_serializer.data, status=status.HTTP_200_OK)
+
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    def add_cart_item(self, request):
+        cart_hash = request.data.get("cart_hash")
+        product_id = request.data.get("product_id")
+        size = request.data.get("size")
+        amount = request.data.get("amount")
+
+        try:
+            amount = int(amount)
+        except ValueError as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        user = request.user
+        cart = get_object_or_404(Cart, id=cart_hash)
+
+        if cart.owner and cart.owner != user:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+
+        if existing_item := cart.items.filter(product_id=product_id, size=size).first():
+            existing_item.amount = existing_item.amount + amount
+            existing_item.save()
+
+        else:
+            item = Item(product_id=product_id, size=size, amount=amount)
+            item.save()
+            cart.items.add(item)
+            cart.save()
+
+        cart_serializer = CartSerializer(cart)
+
+        return Response(cart_serializer.data, status=status.HTTP_200_OK)
+
+    def remove_cart_item(self, request):
+        cart_hash = request.data.get("cart_hash")
+        item_hash = request.data.get("item_hash")
+
+        user = request.user
+
+        cart = get_object_or_404(Cart, id=cart_hash)
+
+        if cart.owner and cart.owner != user:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+
+        query = cart.items.filter(id=item_hash)
+
+        if query.exists():
+            item = query.get()
+            cart.items.remove(item)
+            item.delete()
+            cart.save()
+
+            cart_serializer = CartSerializer(cart)
+
+            return Response(cart_serializer.data, status=status.HTTP_200_OK)
         return Response(status=status.HTTP_404_NOT_FOUND)

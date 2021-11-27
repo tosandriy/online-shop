@@ -309,3 +309,81 @@ Traceback (most recent call last):
 AssertionError: The field 'count' was declared on serializer CartSerializer, but has not been included in the 'fields' option.
 October 19 - 20:55:21 | INFO | ruines
 October 19 - 20:55:21 | INFO | {'_state': <django.db.models.base.ModelState object at 0x00000278CA7ADFD0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 20 - 19:36:54 | INFO | ruines
+October 20 - 19:36:54 | INFO | {'_state': <django.db.models.base.ModelState object at 0x00000220CA77FF70>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 20 - 20:37:11 | INFO | ruines
+October 20 - 20:37:11 | INFO | {'_state': <django.db.models.base.ModelState object at 0x00000220CA54CCA0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 20 - 20:37:24 | INFO | ruines
+October 20 - 20:37:24 | INFO | {'_state': <django.db.models.base.ModelState object at 0x00000220CA4EB9D0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 20 - 20:50:58 | INFO | ruines
+October 20 - 20:50:58 | INFO | {'_state': <django.db.models.base.ModelState object at 0x00000220CA52B880>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 20 - 22:12:10 | INFO | ruines
+October 20 - 22:12:10 | INFO | {'_state': <django.db.models.base.ModelState object at 0x00000220CA52B070>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 23 - 10:45:53 | INFO | ruines
+October 23 - 10:45:53 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001D738C68550>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 23 - 12:52:54 | INFO | ruines
+October 23 - 12:52:54 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001D738DB1B20>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 23 - 13:03:19 | INFO | ruines
+October 23 - 13:03:19 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001D738BEB220>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 23 - 13:03:19 | INFO | ruines
+October 23 - 13:03:19 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001D738D6A040>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 23 - 13:07:55 | INFO | ruines
+October 23 - 13:07:55 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001D738DB1BB0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 23 - 15:06:38 | INFO | ruines
+October 23 - 15:06:38 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001D738BEBA60>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 23 - 15:06:46 | INFO | ruines
+October 23 - 15:06:46 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001D738DB1D30>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 23 - 15:48:40 | INFO | ruines
+October 23 - 15:48:40 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001D738C39E50>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 23 - 15:48:43 | INFO | ruines
+October 23 - 15:48:43 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001D738C2AD60>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 23 - 15:51:47 | INFO | ruines
+October 23 - 15:51:47 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001D738C2AA90>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 23 - 16:56:34 | INFO | product_type: t-shirts
+October 23 - 16:56:35 | INFO | product_type: t-shirts
+October 23 - 16:56:39 | INFO | ruines
+October 23 - 16:56:39 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001D738C2FD90>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 23 - 19:23:28 | INFO | product_type: t-shirts
+October 23 - 19:23:28 | INFO | product_type: t-shirts
+October 24 - 09:48:35 | INFO | ruines
+October 24 - 09:48:35 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001AE113C04C0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 24 - 12:24:09 | INFO | ruines
+October 24 - 12:24:09 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001AE114332E0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 24 - 12:34:05 | INFO | ruines
+October 24 - 12:34:05 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001AE11213E80>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 24 - 12:37:59 | INFO | ruines
+October 24 - 12:37:59 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001AE11213CD0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 24 - 12:59:28 | INFO | ruines
+October 24 - 12:59:28 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001AE11433490>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 24 - 13:26:21 | INFO | ruines
+October 24 - 13:26:21 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001AE11399370>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 24 - 22:09:00 | INFO | ruines
+October 24 - 22:09:00 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001E8C33AEB50>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 25 - 20:36:23 | INFO | ruines
+October 25 - 20:36:23 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001929591E160>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 26 - 20:08:41 | INFO | ruines
+October 26 - 20:08:41 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001F5C10E5BB0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 26 - 20:21:16 | INFO | ruines
+October 26 - 20:21:16 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001F5C0EFE940>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 26 - 20:24:52 | INFO | ruines
+October 26 - 20:24:52 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001F5C0FA5CD0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 26 - 20:27:08 | INFO | ruines
+October 26 - 20:27:08 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001F5C12258B0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 27 - 21:16:18 | INFO | ruines
+October 27 - 21:16:18 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000002BD3ACADD60>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 28 - 21:20:38 | INFO | ruines
+October 28 - 21:20:38 | INFO | {'_state': <django.db.models.base.ModelState object at 0x0000022ECC236FA0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 28 - 22:41:18 | INFO | ruines
+October 28 - 22:41:18 | INFO | {'_state': <django.db.models.base.ModelState object at 0x0000022ECC131E80>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 28 - 22:41:43 | INFO | ruines
+October 28 - 22:41:43 | INFO | {'_state': <django.db.models.base.ModelState object at 0x0000022ECC089670>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 30 - 11:44:11 | INFO | ruines
+October 30 - 11:44:11 | INFO | {'_state': <django.db.models.base.ModelState object at 0x00000228AB0BE0D0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 30 - 14:56:38 | INFO | ruines
+October 30 - 14:56:38 | INFO | {'_state': <django.db.models.base.ModelState object at 0x00000263D0B3D190>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 30 - 16:53:09 | INFO | ruines
+October 30 - 16:53:09 | INFO | {'_state': <django.db.models.base.ModelState object at 0x00000263D0939790>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 31 - 09:55:00 | INFO | ruines
+October 31 - 09:55:00 | INFO | {'_state': <django.db.models.base.ModelState object at 0x000001D7D12B95E0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}
+October 31 - 11:26:32 | INFO | ruines
+October 31 - 11:26:32 | INFO | {'_state': <django.db.models.base.ModelState object at 0x0000023878DB80D0>, 'id': 1, 'name': 'ruines', 'logo': 'cloth_shop/media/images/logo_photos/lacostelogo.png'}

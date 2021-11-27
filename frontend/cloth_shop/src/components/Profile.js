@@ -42,8 +42,8 @@ export default function Profile(props) {
     let state = store.getState();
     if (state.token !== null && !loaded) {
         setLoaded(true);
-        console.log(state.token);
-        const resource = fetchShippingInfoData(state.token);
+        console.log(state.auth.token);
+        const resource = fetchShippingInfoData(state.auth.token);
         setResource(resource);
     }
 

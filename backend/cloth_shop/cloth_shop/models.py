@@ -205,6 +205,7 @@ class MyUser(AbstractBaseUser):
 
 class Item(models.Model):
     """A product with extra info for order"""
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     size = models.CharField(choices=choices.SIZES, max_length=10)
     amount = models.IntegerField(default=1)
@@ -221,8 +222,10 @@ class Order(models.Model):
 
 class Cart(models.Model):
     """A model to store user's products he wants to buy"""
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True)
-    owner = models.OneToOneField(MyUser, related_name='cart', on_delete=models.CASCADE, unique=True, null=True)
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True)
+    owner = models.OneToOneField(MyUser, related_name='cart',
+                                 on_delete=models.CASCADE, unique=True,
+                                 null=True, blank=True)
     items = models.ManyToManyField(Item)
     status = models.CharField(choices=choices.CART_STATUSES, default=choices.CART_STATUSES[0][0], max_length=20)
 
