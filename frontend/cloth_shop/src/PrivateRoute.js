@@ -7,14 +7,13 @@ import {getCookie} from './js/cookie.js';
 
 
 export default function PrivateRoute({ component: Component, token,store, ...rest }) {
-    const dispatch = useDispatch();
-    dispatch({"type": "AUTH_SUCCESS", token: getCookie("token")});
+
     return (
         <Route
         {...rest}
         render={props => (
 
-          store.getState().auth.token
+          store.getState().auth.is_authenticated !== false
             ? <Component {...props} />
             : <Redirect to="/" />
         )}

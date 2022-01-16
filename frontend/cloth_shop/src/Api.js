@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { store } from './store/store';
+
 
 export const HOST = "http://127.0.0.1:8000";
 
@@ -57,19 +57,30 @@ const fetchBrands = () => {
     return axios.get(HOST + ROOT_API_PATH + "/brands")
 }
 
-const fetchCart = (cart_hash, token) => {
+export const fetchCart = (cart_hash, token) => {
 
     let request_body = {
         "cart_hash": cart_hash
     }
 
-    let headers = {
-        "Authorization": "Token " + token
+    let headers = {};
+
+    if (token !== null) {
+        headers["Authorization"] = "Token " + token;
     }
+
+    return axios.get(
+        HOST + ROOT_API_PATH + "/cart",
+        {
+            params: request_body,
+            headers: headers
+        }
+    )
+
     return axios(
         {
             url: HOST + ROOT_API_PATH + "/cart",
-            data: request_body,
+            body: request_body,
             headers: headers
         }
     )
@@ -78,41 +89,63 @@ const fetchCart = (cart_hash, token) => {
 export const createCart = (cart_hash=null) => {
 
     const request_body = {
-        "cart_hash": cart_hash
+
+    }
+
+    if (cart_hash !== null) {
+        request_body["cart_hash"] = cart_hash;
     }
 
     return axios.post(HOST + ROOT_API_PATH + "/cart", request_body)
 }
 
-const addCartItem = (cart_hash, product_id, size=null, amount=null) => {
+export const addCartItem = (token, cart_hash, product_id, size=null, amount=null) => {
 
-    const request_body = {
+    let data = {
         "cart_hash": cart_hash,
         "product_id": product_id,
         "size": size,
         "amount": amount
     }
 
-    return axios.post(HOST + ROOT_API_PATH + "/cart/add", request_body)
+    console.log(data);
+
+    return axios.post(HOST + ROOT_API_PATH + "/cart/item", data,  {headers: {
+            'Authorization': `Token ${token}`
+        }});
 }
 
-const updateCartItem = (cart_hash, item_hash, product_size=null, product_amount=null) => {
+export const updateCartItem = (token, cart_hash, item_hash, amount) => {
 
-    const request_body = {
-        "cart_hash": cart_hash
+    const data = {
+        "cart_hash": cart_hash,
+        "item_hash": item_hash,
+        "amount": amount,
     }
 
-    return axios.put(HOST + ROOT_API_PATH + "/cart/update", request_body)
+    return axios.put(HOST + ROOT_API_PATH + "/cart/item", data,  {headers: {
+            'Authorization': `Token ${token}`
+        }});
 }
 
-const deleteCartItem = (cart_hash, item_hash) => {
+export const deleteCartItem = (token, cart_hash, item_hash) => {
 
     const request_body = {
         "cart_hash": cart_hash,
         "item_hash": item_hash,
     }
 
-    return axios.delete(HOST + ROOT_API_PATH + "/cart/remove", request_body)
+    const headers = {
+        Authorization: "Token " + token
+    }
+
+    console.log(request_body);
+    console.log(headers);
+    return axios.delete(HOST + ROOT_API_PATH + "/cart/item", {
+        data: request_body,
+        headers: headers
+        }
+        )
 }
 
 const postCartInfo = (cart_hash, item_hash, size, amount, action) => {
@@ -140,7 +173,7 @@ const fetchShippingInfo = (token) => {
     return axios.get(HOST + ROOT_API_PATH + "/user-info", axiosConfig);
 }
 
-export const postShippingInfo = (first_name, surname, patronymic, phone_number, country, city, region, street, building, flat, index) => {
+export const postShippingInfo = (auth_token, first_name, surname, patronymic, phone_number, country, city, region, street, building, flat, index) => {
     let request_object = {
             "first_name": first_name,
             "surname": surname,
@@ -155,11 +188,9 @@ export const postShippingInfo = (first_name, surname, patronymic, phone_number, 
             "index": index
     };
 
-    let token = "";
-
 
     return axios.post(HOST + ROOT_API_PATH + "/user-info/", request_object,  {headers: {
-            'Authorization': `Token ${token}`
+            'Authorization': `Token ${auth_token}`
         }});
 }
 
@@ -237,6 +268,8 @@ export function fetchShippingInfoData(token) {
 };
 
 export function fetchCartData(cart_hash, token) {
+    console.log("cart_hash: " + cart_hash);
+    console.log("token: " + token);
     let cartPromise = fetchCart(cart_hash, token);
 
     return {
@@ -260,6 +293,16 @@ export function createCartObject(token=null) {
     };
 };
 
+export function createCartObjectWithCallback(callback) {
+    createCart().then(
+        result => {
+            callback(result.data);
+        }
+    )
+
+
+};
+
 export function addCartItemData(cart_hash, product_id, size=null, amount=null) {
     let cartPromise = addCartItem(cart_hash, product_id, size, amount);
 
@@ -276,8 +319,8 @@ export function updateCartItemData(cart_hash, item_hash, product_size=null, prod
     };
 };
 
-export function deleteCartItemData(cart_hash, item_hash) {
-    let cartPromise = deleteCartItem(cart_hash, item_hash);
+export function deleteCartItemData(token, cart_hash, item_hash) {
+    let cartPromise = deleteCartItem(token, cart_hash, item_hash);
 
     return {
         cartInfo: wrapPromise(cartPromise)

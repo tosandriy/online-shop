@@ -28,12 +28,10 @@ export const cartFail = cartInfo => {
     }
 }
 
-export const getCartInfo = cartInfo => {
+export const getCartInfo = token => {
     return {
         type: actionTypes.CART_GET_CACHED,
-        cartHash: cartInfo.token,
-        itemsAmount: cartInfo.amount,
-        totalPrice: cartInfo.totalPrice
+        cart_hash: token
     }
 }
 
@@ -53,21 +51,12 @@ export const cartUpdateData = (cartHash=null, itemsAmount=null, totalPrice=null)
     return resultUpdateObject
 }
 
-export const createNewCart = () => {
+export const updateCartData = (id, cart_price, count) => {
     return dispatch => {
-        dispatch(startCart());
-        createCart()
-        .then(
-            result => {
-                if (!result.data.error) {
-                    setCookie("cart_hash", result.data.id, {"max-age": 60 * 60 * 24 * 7, "path": "/"});
-                    setCookie("cart_price", result.data.cart_price, {"max-age": 60 * 60 * 24 * 7, "path": "/"});
-                    setCookie("cart_count", result.data.count, {"max-age": 60 * 60 * 24 * 7, "path": "/"});
-                    dispatch(cartSuccess())
-                }
-
-            }
-        )
+        setCookie("cart_hash", id, {"max-age": 60 * 60 * 24 * 7, "path": "/"});
+        setCookie("cart_price", cart_price, {"max-age": 60 * 60 * 24 * 7, "path": "/"});
+        setCookie("cart_count", count, {"max-age": 60 * 60 * 24 * 7, "path": "/"});
+        dispatch(cartSuccess(id, count, cart_price))
     }
 }
 
@@ -82,7 +71,7 @@ export const getCartData = (cart_hash) => {
                     setCookie("cart_price", result.data.cart_price, {"max-age": 60 * 60 * 24 * 7, "path": "/"});
                     setCookie("cart_count", result.data.count, {"max-age": 60 * 60 * 24 * 7, "path": "/"});
 
-                    dispatch(cartSuccess())
+                    dispatch(cartSuccess(result.data.id, result.data.count, result.data.cart_price))
                 }
             }
         );
@@ -100,7 +89,7 @@ export const addItemToCart = (cart_hash, product_id, size=null, amount=null) => 
                     setCookie("cart_price", result.data.cart_price, {"max-age": 60 * 60 * 24 * 7, "path": "/"});
                     setCookie("cart_count", result.data.count, {"max-age": 60 * 60 * 24 * 7, "path": "/"});
 
-                    dispatch(cartSuccess())
+                    dispatch(cartSuccess(result.data.id, result.data.count, result.data.cart_price))
                 }
             }
         )
@@ -118,7 +107,7 @@ export const removeItemFromCart = (cart_hash, product_id, size=null, amount=null
                     setCookie("cart_price", result.data.cart_price, {"max-age": 60 * 60 * 24 * 7, "path": "/"});
                     setCookie("cart_count", result.data.count, {"max-age": 60 * 60 * 24 * 7, "path": "/"});
 
-                    dispatch(cartSuccess())
+                    dispatch(cartSuccess(result.data.id, result.data.count, result.data.cart_price))
                 }
             }
         )
@@ -136,7 +125,7 @@ export const updateItemCart = (cart_hash, product_id, size=null, amount=null) =>
                     setCookie("cart_price", result.data.cart_price, {"max-age": 60 * 60 * 24 * 7, "path": "/"});
                     setCookie("cart_count", result.data.count, {"max-age": 60 * 60 * 24 * 7, "path": "/"});
 
-                    dispatch(cartSuccess())
+                    dispatch(cartSuccess(result.data.id, result.data.count, result.data.cart_price))
                 }
             }
         )
@@ -145,39 +134,13 @@ export const updateItemCart = (cart_hash, product_id, size=null, amount=null) =>
 
 export const cartCheckState = () => {
     return dispatch => {
-        dispatch(startCart());
-        const token = getCookie("token");
+
         const cart_hash = getCookie("cart_hash");
-        console.log(cart_hash);
-        checkState(cart_hash, token).then(
-            result => {
-                console.log(result);
-                if (result.status === 200) {
-                    setCookie("cart_hash", result.data.id);
-                    dispatch(
-                        cartSuccess(
-                            result.data.id,
-                            result.data.count,
-                            result.data.cart_price
-                        )
-                    )
-                }
-                else {
-                    createCart(token)
-                    .then(
-                        result => {
-                            setCookie("cart_hash", result.data.id);
-                            dispatch(
-                                cartSuccess(
-                                    result.data.id,
-                                    result.data.count,
-                                    result.data.cart_price
-                                )
-                            )
-                        }
-                    )
-                }
-            }
-        )
+        if (cart_hash !== undefined) {
+            dispatch(getCartInfo(cart_hash))
+        }
+        else {
+            dispatch(cartFail())
+        }
     }
 }

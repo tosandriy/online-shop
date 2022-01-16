@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import React from 'react';
 import {
  BrowserRouter as Router,
  Switch,
@@ -6,10 +6,10 @@ import {
  useRouteMatch,
  Link} from 'react-router-dom';
  import { connect } from 'react-redux';
-import Profile from '../components/Profile'
-import Orders from '../components/Orders'
+import Profile from '../components/Profile';
+import Orders from '../components/Orders';
 import {fetchShippingInfoData, postShippingInfo} from '../Api';
-import * as actions from '../store/actions/auth.js'
+import * as actions from '../store/actions/auth.js';
 
 
 class ProfileLayout extends React.Component {
@@ -18,22 +18,10 @@ class ProfileLayout extends React.Component {
         super(props);
 
         this.state = {
-            path: window.location.pathname,
-            initialResource: null
+            path: window.location.pathname
         }
 
         this.onLogoutButtonClick = this.onLogoutButtonClick.bind(this);
-    }
-
-    componentDidUpdate(newProps) {
-        let store = newProps.store;
-        if (store) {
-            let state = store.getState();
-            if (state.auth.token !== null) {
-                const initialResource = fetchShippingInfoData(state.auth.token);
-                this.setState({initialResource: initialResource});
-            }
-        }
     }
 
     onLogoutButtonClick = (e) => {
@@ -50,12 +38,10 @@ class ProfileLayout extends React.Component {
                         <button onClick={this.onLogoutButtonClick} class="accaunt_menu_btn accaunt_menu_btn_logout">Выйти</button>
                     </div>
                     <div class="accaunt_page">
-
-                            <Switch>
-                                <Route exact path={`/profile/`} initialResource={this.state.initialResource} component={Profile}/>
-                                <Route path={`/profile/purchase_history`} component={Orders}/>
-                            </Switch>
-
+                        <Switch>
+                            <Route exact path={`/profile/`} component={Profile}/>
+                            <Route path={`/profile/purchase_history`} component={Orders}/>
+                        </Switch>
                     </div>
                 </div>
             </main>

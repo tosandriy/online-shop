@@ -68,23 +68,33 @@ class ItemProductSerializer(serializers.ModelSerializer):
 
 class ItemSerializer(serializers.ModelSerializer):
     product = ItemProductSerializer()
+    price = serializers.SerializerMethodField('get_price')
+
+    def get_price(self, obj):
+        return obj.amount * obj.product.price
+
 
     class Meta:
         model = Item
-        fields = ('product', 'size', 'amount', 'id')
+        fields = ('product', 'size', 'amount', 'id', 'price')
 
 
 class CartSerializer(serializers.ModelSerializer):
     items = ItemSerializer(many=True)
     cart_price = serializers.SerializerMethodField('get_cart_price')
     count = serializers.SerializerMethodField('get_items_amount')
+    delivery_price = serializers.SerializerMethodField('get_delivery_price')
 
     def get_cart_price(self, obj):
         return obj.get_cart_price()
+
+    def get_delivery_price(self, obj):
+        cart_price = obj.get_cart_price()
+        return 0 if cart_price > 2000 else 500
 
     def get_items_amount(self, obj):
         return obj.get_items_amount()
 
     class Meta:
         model = Cart
-        fields = ('items', 'count', 'cart_price', 'id', 'status')
+        fields = ('items', 'count', 'cart_price', 'id', 'status', 'delivery_price')

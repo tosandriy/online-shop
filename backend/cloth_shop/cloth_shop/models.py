@@ -230,7 +230,7 @@ class Cart(models.Model):
     status = models.CharField(choices=choices.CART_STATUSES, default=choices.CART_STATUSES[0][0], max_length=20)
 
     def get_cart_price(self):
-        return sum((item.product.price for item in self.items.all().select_related("product")))
+        return sum((item.product.price * item.amount for item in self.items.all().select_related("product")))
 
     def get_items_amount(self):
         return self.items.count()

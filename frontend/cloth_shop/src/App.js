@@ -12,9 +12,10 @@ import * as cart_actions from './store/actions/cart';
 
 class App extends Component {
 
-    componentDidMount() {
-        this.props.onTryAutoSignup();
+    constructor(props) {
+        super(props);
         this.props.onTryGetCart();
+        this.props.onTryAutoSignup();
     }
 
     render() {
@@ -40,8 +41,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTryAutoSignup: () => dispatch(auth_actions.authCheckState()),
-    onTryGetCart: () => dispatch(cart_actions.cartCheckState())
+        onTryAutoSignup: () => dispatch(auth_actions.authCheckState()),
+        onTryGetCart: () => dispatch(cart_actions.cartCheckState())
   }
 }
 

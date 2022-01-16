@@ -5,27 +5,23 @@ const initialState = {
     cart_hash: null,
     items_count: null,
     total_price: null,
-    loading: null,
     error: null
 }
 
 const cartCreateStart = (state, action) => {
     return updateObject(state, {
-        loading: true,
         error: null
     })
 }
 
 const cartCreateFail = (state, action) => {
     return updateObject(state, {
-        error: action.error,
-        loading: false
+        error: action.error
     })
 }
 
 const cartCreateSuccess = (state, action) => {
     return updateObject(state, {
-        loading: false,
         cart_hash: action.cart_hash,
         items_count: action.items_count,
         total_price: action.total_price
@@ -34,10 +30,7 @@ const cartCreateSuccess = (state, action) => {
 
 const cartGetCached = (state, action) => {
     return updateObject(state, {
-        loading: false,
-        cart_hash: action.cart_hash,
-        items_count: action.items_count,
-        total_price: action.total_price
+        cart_hash: action.cart_hash
     })
 }
 

@@ -11,6 +11,7 @@ from .. import choices
 
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
+from django.core import exceptions
 
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -232,17 +233,27 @@ class CartViewSet(ViewSet):
 
     @logger.catch
     def get_cart_by_hash(self, request,  *args, **kwargs):
-        cart_hash = request.data.get("cart_hash")
+        cart_hash = request.query_params.get("cart_hash")
+        logger.info(request.query_params)
         user = request.user
         cart = None
 
         if cart_hash:
             if user.is_anonymous:
-                if cart_hash:
-                    cart = Cart.objects.get(id=cart_hash)
+                try:
+                    cart_queryset = Cart.objects.filter(id=cart_hash)
+                except exceptions.ValidationError:
+                    logger.warning(f"Got non-UUID value as cart_hash: '{cart_hash}'")
+                else:
+                    if cart_queryset:
+                        cart = cart_queryset.get()
+                        if cart.owner:
+                            cart = None
 
             else:
-                cart = Cart.objects.get(owner=user)
+                cart_queryset = Cart.objects.filter(owner=user)
+                if cart_queryset:
+                    cart = cart_queryset.get()
 
             if cart:
                 cart_serializer = CartSerializer(cart)
@@ -316,8 +327,8 @@ class CartViewSet(ViewSet):
     def update_cart_item(self, request, *args, **kwargs):
         cart_hash = request.data.get("cart_hash")
         item_hash = request.data.get("item_hash")
-        product_size = request.data.get("product_size")
-        product_amount = request.data.get("product_amount")
+        product_size = request.data.get("size")
+        product_amount = request.data.get("amount")
 
         user = request.user
         cart = get_object_or_404(Cart, id=cart_hash)
@@ -341,6 +352,7 @@ class CartViewSet(ViewSet):
 
         return Response(status=status.HTTP_404_NOT_FOUND)
 
+    @logger.catch
     def add_cart_item(self, request):
         cart_hash = request.data.get("cart_hash")
         product_id = request.data.get("product_id")
@@ -353,7 +365,13 @@ class CartViewSet(ViewSet):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
         user = request.user
-        cart = get_object_or_404(Cart, id=cart_hash)
+        try:
+            cart = get_object_or_404(Cart, id=cart_hash)
+        except Exception as e:
+            if not request.user.is_anonymous:
+                cart = request.user.cart
+            else:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
 
         if cart.owner and cart.owner != user:
             return Response(status=status.HTTP_403_FORBIDDEN)
@@ -375,7 +393,8 @@ class CartViewSet(ViewSet):
     def remove_cart_item(self, request):
         cart_hash = request.data.get("cart_hash")
         item_hash = request.data.get("item_hash")
-
+        logger.info(cart_hash)
+        logger.info(item_hash)
         user = request.user
 
         cart = get_object_or_404(Cart, id=cart_hash)

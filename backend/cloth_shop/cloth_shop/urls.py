@@ -13,14 +13,14 @@ from .api import views as api_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.main_page_view,name='main'),
-    path('products/<product_type>',views.filter_view,name='products'),
-    path('product/<id>',views.product_view, name='product'),
-    path('profile', views.profile_view,name='profile'),
+    path('', views.main_page_view, name='main'),
+    path('products/<product_type>', views.filter_view, name='products'),
+    path('product/<id>', views.product_view, name='product'),
+    path('profile', views.profile_view, name='profile'),
     path('register', views.register_view, name='register'),
     path('logout', auth_views.LogoutView.as_view(), name='logout'),
     path('login', views.MyLoginView.as_view(template_name='login.html'), name='login'),
-    path('purchase_history', views.purchase_history_view,name='history'),
+    path('purchase_history', views.purchase_history_view, name='history'),
     path('cart', views.cart_view, name='cart'),
 
     # api
@@ -34,9 +34,11 @@ urlpatterns = [
     # path('api/add_to_cart/<product_id>/<size>/<amount>',views.AddToCartAPIView.as_view(),name='add_to_cart'),
     path('api/cart', api_views.CartViewSet.as_view({"get": "get_cart_by_hash", "post": "create_new_cart"})),
     path('api/cart/check-state/', api_views.CartViewSet.as_view({"post": "get_cart_by_hash_or_combine"})),
-    path('api/cart/add', api_views.CartViewSet.as_view({"post": "add_cart_item"})),
-    path('api/cart/remove', api_views.CartViewSet.as_view({"delete": "remove_cart_item"})),
-    path('api/cart/update', api_views.CartViewSet.as_view({"put": "update_cart_item"})),
+    path('api/cart/item', api_views.CartViewSet.as_view({
+        "post": "add_cart_item",
+        "delete": "remove_cart_item",
+        "put": "update_cart_item"
+    })),
 
     path('api/products/<order>', api_views.ProductListView.as_view()),
     path('api/product/<pk>', api_views.ProductDetailView.as_view()),

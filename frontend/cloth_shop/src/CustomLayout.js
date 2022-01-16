@@ -80,7 +80,6 @@ class CustomLayout extends React.Component {
             event.preventDefault();
             this.toggleSignIn(!this.state.isSignInToggled);
         }
-
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -101,13 +100,10 @@ class CustomLayout extends React.Component {
                         <div class="header_top">
                             <NavBar />
                             <div class="header_user">
-                            { this.props.isAuthenticated ?
+
                                 <NavLink to="/cart" className="cart" exact>
                                     <img src={cart}/>
                                 </NavLink>
-                              :
-                               ""
-                            }
 
                                 <NavLink to="/profile" className="user" exact onClick={this.profileClickHandler}>
                                     <img src={profile}/>

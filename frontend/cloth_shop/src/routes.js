@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import ProductsList from "./containers/ProductsListView";
 import ProductDetail from "./containers/ProductDetailView";
 import MainPage from "./containers/MainPageView";
-import Cart from "./containers/Cart";
+import CartLayout from "./containers/CartLayout";
 import ProfileLayout from "./containers/ProfileLayout"
 
 import PrivateRoute from "./PrivateRoute.js";
@@ -16,7 +16,7 @@ const BaseRouter = (props) => (
         <Route exact path="/" component={MainPage}/>{" "}
         <Route exact path="/products/:product_type/" component={ProductsList}/>{" "}
         <Route exact path="/product/:product_id/" component={ProductDetail}/>{" "}
-        <PrivateRoute exact path="/cart/" token={props.token} store={props.store} component={Cart}/>
+        <PrivateRoute exact path="/cart/" token={props.token} store={props.store} component={CartLayout}/>
         <PrivateRoute path="/profile" token={props.token} store={props.store} component={ProfileLayout}/>
     </div>
 )

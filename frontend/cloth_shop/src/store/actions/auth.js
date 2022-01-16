@@ -11,14 +11,16 @@ export const authStart = () => {
 export const authSuccess = token => {
     return {
         type: actionTypes.AUTH_SUCCESS,
-        token: token
+        token: token,
+        is_authenticated: true
     }
 }
 
 export const authFail = error => {
     return {
         type: actionTypes.AUTH_FAIL,
-        error: error
+        error: error,
+        is_authenticated: false
     }
 }
 
