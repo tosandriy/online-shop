@@ -238,8 +238,8 @@ class CartViewSet(ViewSet):
         user = request.user
         cart = None
 
-        if cart_hash:
-            if user.is_anonymous:
+        if user.is_anonymous:
+            if cart_hash:
                 try:
                     cart_queryset = Cart.objects.filter(id=cart_hash)
                 except exceptions.ValidationError:
@@ -249,17 +249,19 @@ class CartViewSet(ViewSet):
                         cart = cart_queryset.get()
                         if cart.owner:
                             cart = None
-
             else:
-                cart_queryset = Cart.objects.filter(owner=user)
-                if cart_queryset:
-                    cart = cart_queryset.get()
+                return Response(status=status.HTTP_404_NOT_FOUND)
 
-            if cart:
-                cart_serializer = CartSerializer(cart)
-                return Response(cart_serializer.data, status=status.HTTP_200_OK)
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        return Response(status=status.HTTP_404_NOT_FOUND)
+        else:
+            cart_queryset = Cart.objects.filter(owner=user)
+            if cart_queryset:
+                cart = cart_queryset.get()
+
+        if cart:
+            cart_serializer = CartSerializer(cart)
+            return Response(cart_serializer.data, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
     @logger.catch
     def get_cart_by_hash_or_combine(self, request, *args, **kwargs):
@@ -346,9 +348,9 @@ class CartViewSet(ViewSet):
 
             cart_item.save()
 
-            item_serializer = ItemSerializer(cart_item)
+            cart_item = CartSerializer(cart)
 
-            return Response(item_serializer.data, status=status.HTTP_200_OK)
+            return Response(cart_item.data, status=status.HTTP_200_OK)
 
         return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -414,3 +416,41 @@ class CartViewSet(ViewSet):
 
             return Response(cart_serializer.data, status=status.HTTP_200_OK)
         return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+class OrderViewSet(ViewSet):
+    authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    @logger.catch
+    def create_order(self, request):
+        user = request.user
+        cart = user.cart
+        if user.has_completed_shipping_info:
+            logger.info(cart and cart.items.all())
+            logger.info(cart.id)
+            if cart and cart.items.all():
+                logger.info(cart.items.all())
+                order = Order(owner=user)
+                order.save()
+                order.items.set(cart.items.all())
+                order.save()
+                user.cart.delete()
+                new_cart = Cart()
+                new_cart.owner = user
+                new_cart.save()
+                logger.info(order)
+
+                return Response(OrderSerializer(order).data, status=status.HTTP_201_CREATED)
+
+            else:
+                return Response({"error": "No items in the cart"}, status=status.HTTP_404_NOT_FOUND)
+
+        else:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+
+    def get_orders(self, request):
+        user = request.user
+        orders = user.orders
+        orders_serializer = OrderSerializer(orders, many=True)
+        return Response(orders_serializer.data, status=status.HTTP_200_OK)

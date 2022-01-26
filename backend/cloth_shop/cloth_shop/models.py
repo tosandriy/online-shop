@@ -3,6 +3,8 @@ from django.utils import timezone
 from django.utils.timezone import now
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+from loguru import logger
+
 from . import choices
 
 import uuid
@@ -189,6 +191,16 @@ class MyUser(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['password']
 
+    @property
+    def has_completed_shipping_info(self):
+        shipping_info_fields = self.shipping_info._meta.get_fields()
+        for shipping_info_field in shipping_info_fields:
+            logger.info(shipping_info_field.name)
+            logger.info(getattr(self.shipping_info, shipping_info_field.name))
+            if not getattr(self.shipping_info, shipping_info_field.name):
+                return False
+        return True
+
     def get_username(self):
         return self.email
 
@@ -217,7 +229,10 @@ class Order(models.Model):
     status = models.CharField(choices=choices.STATUSES, default=choices.STATUSES[0][0], max_length=20)
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='orders')
     items = models.ManyToManyField(Item)
-    payment_id = models.CharField(max_length=100, unique=True)
+    payment_id = models.CharField(max_length=100, unique=True, null=True)
+
+    def get_price(self):
+        return sum((item.product.price * item.amount for item in self.items.all().select_related("product")))
 
 
 class Cart(models.Model):

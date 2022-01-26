@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from loguru import logger
-from ..models import Product, Brand, Item, Cart
+from ..models import Product, Brand, Item, Cart, Order
 
 
 class ProductBriefSerializer(serializers.ModelSerializer):
@@ -98,3 +98,22 @@ class CartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
         fields = ('items', 'count', 'cart_price', 'id', 'status', 'delivery_price')
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    items = ItemSerializer(many=True)
+    price = serializers.SerializerMethodField("get_price")
+    address = serializers.SerializerMethodField("get_address")
+
+    def get_price(self, obj):
+        return obj.get_price()
+
+    def get_address(self, obj):
+        shipping_info = obj.owner.shipping_info
+        return f"{shipping_info.country}, {shipping_info.city}, {shipping_info.region}, " \
+               f"{shipping_info.street}, {shipping_info.building}, {shipping_info.flat}," \
+               f"{shipping_info.index}"
+
+    class Meta:
+        model = Order
+        fields = "__all__"

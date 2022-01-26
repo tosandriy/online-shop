@@ -4,7 +4,7 @@ import CartCounter from './CartCounter';
 import CartProductsList from './CartProductsList';
 import { useStore, useDispatch, connect } from 'react-redux';
 import {updateCartData} from '../store/actions/cart';
-import {deleteCartItem, createCartObjectWithCallback, fetchCart} from '../Api';
+import {deleteCartItem, createCartObjectWithCallback, fetchCart, createOrder} from '../Api';
 
 
 export class Cart extends React.Component {
@@ -14,6 +14,7 @@ export class Cart extends React.Component {
 
         this.deleteProduct = this.deleteProduct.bind(this);
         this.handleCartInfoDataChange = this.handleCartInfoDataChange.bind(this);
+        this.createOrderAndGetNewCart = this.createOrderAndGetNewCart.bind(this);
     }
 
     async deleteProduct(token, cart_hash, item_hash) {
@@ -24,11 +25,24 @@ export class Cart extends React.Component {
         )
     }
 
+    async createOrderAndGetNewCart(token) {
+        createOrder(token).then(
+        result => {
+            console.log(123123213);
+            fetchCart(null, token).then(
+                result => {
+                    this.setState({cartInfoData: result.data})
+                }
+            )
+        })
+    }
+
     handleCartInfoDataChange(cartInfoData) {
         this.props.onCartInfoDataChange(cartInfoData);
         this.setState({
             cartInfoData: cartInfoData
         });
+        console.log(this.state);
     }
 
     componentDidMount() {
@@ -63,6 +77,7 @@ export class Cart extends React.Component {
                             products={this.state.cartInfoData.items}
                             cartHash={this.state.cartInfoData.id}
                             deleteProduct={this.deleteProduct}
+                            handleCartInfoDataChange={this.handleCartInfoDataChange}
                         />
                         <div  class="final_price">
                             <span class="final_price_border"></span>
@@ -71,7 +86,7 @@ export class Cart extends React.Component {
                                 <div class="delivery_price"><span>СТОИМОСТЬ ДОСТАВКИ: </span> <span>{this.state.cartInfoData.delivery_price} ₽</span></div>
                                 <div class="delivery_terms"><a href="#">Условия доставки</a></div>
                                 <div class="total_price"><span>Итог: </span> <span>{this.state.cartInfoData.cart_price + this.state.cartInfoData.delivery_price} ₽</span></div>
-                                <div class="final_price_buy"><button class="btn checkout">Оформить заказ</button></div>
+                                <div class="final_price_buy"><button class="btn checkout" onClick={(e) => this.createOrderAndGetNewCart(this.props.token)}>Оформить заказ</button></div>
                             </div>
                         </div>
                     </div>

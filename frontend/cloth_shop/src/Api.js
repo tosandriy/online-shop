@@ -86,6 +86,14 @@ export const fetchCart = (cart_hash, token) => {
     )
 }
 
+export const createOrder = (token) => {
+    return axios({
+        method: 'post',
+        url: HOST + ROOT_API_PATH + "/order",
+        headers: {"Authorization": "Token " + token}
+    })
+}
+
 export const createCart = (cart_hash=null) => {
 
     const request_body = {

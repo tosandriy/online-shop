@@ -9,7 +9,11 @@ import remove from '../images/remove.png';
 export default function CartProductsList(props) {
     return (
         <div class="cart_items">
-            {props.products.map(product => <CartProduct product={product} cartHash={props.cartHash} deleteProduct={props.deleteProduct}/>)}
+            {props.products.map(product => <CartProduct product={product}
+                                                        cartHash={props.cartHash}
+                                                        deleteProduct={props.deleteProduct}
+                                                        handleCartInfoDataChange={props.handleCartInfoDataChange}
+                                                        />)}
         </div>
     )
 }
@@ -20,11 +24,18 @@ function CartProduct(props) {
     console.log(props.cartHash);
     console.log(props.product.id);
 
-    const [itemCount, setItemCount] = useState(props.product.amount);
+    let itemCount = props.product.amount;
+
 
     function changeItemCount(difference) {
-        updateCartItem(state.auth.token, props.cartHash, props.product.id, itemCount + difference);
-        setItemCount(itemCount + difference);
+        updateCartItem(state.auth.token, props.cartHash, props.product.id, itemCount + difference).then(
+            result => {
+                console.log(result);
+                props.handleCartInfoDataChange(result.data);
+            }
+        );
+//        setItemCount(itemCount + difference);
+
     }
 
     return (
