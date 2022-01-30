@@ -94,6 +94,14 @@ export const createOrder = (token) => {
     })
 }
 
+export const getOrders = (token) => {
+    return axios({
+        method: 'get',
+        url: HOST + ROOT_API_PATH + "/order",
+        headers: {"Authorization": "Token " + token}
+    })
+}
+
 export const createCart = (cart_hash=null) => {
 
     const request_body = {

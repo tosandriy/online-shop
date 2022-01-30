@@ -104,15 +104,21 @@ class OrderSerializer(serializers.ModelSerializer):
     items = ItemSerializer(many=True)
     price = serializers.SerializerMethodField("get_price")
     address = serializers.SerializerMethodField("get_address")
+    created_at = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
+    status = serializers.SerializerMethodField("get_status")
 
     def get_price(self, obj):
         return obj.get_price()
 
+
     def get_address(self, obj):
-        shipping_info = obj.owner.shipping_info
+        shipping_info = obj.shipping_info
         return f"{shipping_info.country}, {shipping_info.city}, {shipping_info.region}, " \
                f"{shipping_info.street}, {shipping_info.building}, {shipping_info.flat}," \
                f"{shipping_info.index}"
+
+    def get_status(self, obj):
+        return obj.get_status_display()
 
     class Meta:
         model = Order

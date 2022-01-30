@@ -77,7 +77,7 @@ class ShippingInfo(models.Model):
     phone_number = models.CharField(
         verbose_name='Телефон',
         max_length=16,
-        unique=True,
+        unique=False,
         null=True,
         editable=True
     )
@@ -194,6 +194,7 @@ class MyUser(AbstractBaseUser):
     @property
     def has_completed_shipping_info(self):
         shipping_info_fields = self.shipping_info._meta.get_fields()
+        logger.info(shipping_info_fields)
         for shipping_info_field in shipping_info_fields:
             logger.info(shipping_info_field.name)
             logger.info(getattr(self.shipping_info, shipping_info_field.name))
@@ -228,11 +229,13 @@ class Order(models.Model):
     created_at = models.DateTimeField(editable=False, default=now)
     status = models.CharField(choices=choices.STATUSES, default=choices.STATUSES[0][0], max_length=20)
     owner = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='orders')
+    shipping_info = models.ForeignKey(ShippingInfo, on_delete=models.CASCADE, related_name='order')
     items = models.ManyToManyField(Item)
     payment_id = models.CharField(max_length=100, unique=True, null=True)
 
     def get_price(self):
-        return sum((item.product.price * item.amount for item in self.items.all().select_related("product")))
+        items_price = sum((item.product.price * item.amount for item in self.items.all().select_related("product")))
+        return items_price if items_price > 500 else items_price + 500
 
 
 class Cart(models.Model):

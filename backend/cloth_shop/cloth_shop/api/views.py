@@ -426,15 +426,21 @@ class OrderViewSet(ViewSet):
     def create_order(self, request):
         user = request.user
         cart = user.cart
+        cart_items = cart.items.all()
         if user.has_completed_shipping_info:
-            logger.info(cart and cart.items.all())
+            logger.info(cart and cart_items)
             logger.info(cart.id)
-            if cart and cart.items.all():
-                logger.info(cart.items.all())
-                order = Order(owner=user)
+            if cart and cart_items:
+                logger.info(cart_items)
+                shipping_info = user.shipping_info
+                logger.info(shipping_info.id)
+                shipping_info.pk = None
+                shipping_info.id = None
+                shipping_info.save()
+                logger.info(shipping_info.id)
+                order = Order(owner=user, shipping_info=shipping_info)
                 order.save()
-                order.items.set(cart.items.all())
-                order.save()
+                order.items.set(cart_items)
                 user.cart.delete()
                 new_cart = Cart()
                 new_cart.owner = user
@@ -451,6 +457,6 @@ class OrderViewSet(ViewSet):
 
     def get_orders(self, request):
         user = request.user
-        orders = user.orders
+        orders = user.orders.order_by('-created_at')
         orders_serializer = OrderSerializer(orders, many=True)
         return Response(orders_serializer.data, status=status.HTTP_200_OK)
